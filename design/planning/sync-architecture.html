@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>concierge — how design, code and live stay in sync</title>
+<style>
+  :root { --ink:#33302b; --muted:#6b665d; --line:#e4ded2; --bg:#faf7f1; --accent:#b5763a; }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); margin: 0;
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 22px 96px; }
+  h1 { font-size: 26px; font-weight: 600; margin: 0 0 6px; }
+  h2 { font-size: 15px; font-weight: 600; text-transform: lowercase; letter-spacing: .02em;
+    color: var(--muted); margin: 40px 0 12px; }
+  h3 { font-size: 15px; font-weight: 600; margin: 26px 0 8px; }
+  p, li { color: #45413a; }
+  strong { color: var(--ink); }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+  code { background: #f1ebdf; padding: 1px 5px; border-radius: 4px; font-size: 13px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; margin: 8px 0; display: block; overflow-x: auto; }
+  th, td { border: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1ebdf; font-weight: 600; }
+  ol, ul { padding-left: 22px; }
+  li { margin: 3px 0; }
+  .mermaid { margin: 14px 0; overflow-x: auto; }
+  .lede { color: #45413a; }
+</style>
+</head>
+<body>
+<main>
+  <h1>concierge — how design, code and live stay in sync</h1>
+  <p class="lede">plain-language first: you plan the design in <strong>claude design</strong>, and we want that to end up
+  <strong>live</strong> and <strong>documented</strong> without you babysitting it. the catch is claude design is locked
+  behind your login, so nothing i run can reach in and grab it. so we put one small manual hop in the loop —
+  you export the file — and automate everything after that.</p>
+
+  <p>the shape of it:</p>
+  <ul>
+    <li><strong>you author</strong> in claude design (plan, wireframe, iterate there — that's where you like to think)</li>
+    <li><strong>one hop</strong>: export the standalone html → drop it in <code>design/exports/</code> → say "sync"</li>
+    <li><strong>i automate the rest</strong>: canonical file, git history, render deploy, docs, diffs</li>
+  </ul>
+  <p>one file-drop per design pass buys you version history + a live url + real docs.</p>
+
+  <hr>
+  <h2>the technical side</h2>
+
+  <h3>the flow</h3>
+  <pre class="mermaid">
+flowchart LR
+  A["claude design<br/>you author here"] -->|"export .html<br/>+ drop in design/exports"| B["design/exports/"]
+  B -->|"you say sync"| C{"claude code"}
+  C -->|copy| D["public/index.html<br/>canonical"]
+  D -->|"commit + push"| E["github repo"]
+  E -->|"auto-deploy"| F["render live site"]
+  C -->|update| G["docs + changelog + diff"]
+  classDef manual fill:#f6efe2,stroke:#b5763a,color:#33302b;
+  classDef auto fill:#eef4ee,stroke:#4a7a4a,color:#33302b;
+  class A,B manual;
+  class C,D,E,F,G auto;
+  </pre>
+  <p>the orange boxes are the only thing you touch. everything green is automatic.</p>
+
+  <h3>why there's a manual hop at all</h3>
+  <pre class="mermaid">
+sequenceDiagram
+  participant You
+  participant CD as claude design
+  participant CC as claude code
+  Note over CC,CD: what i tried
+  CC->>CD: WebFetch share url
+  CD-->>CC: 403 forbidden
+  CC->>CD: firecrawl scrape
+  CD-->>CC: "sign in - claude" + hCaptcha
+  Note over CC,CD: the page needs YOUR session — i don't have it
+  You->>CD: export standalone html
+  You->>CC: drop file + "sync"
+  CC->>CC: canonical → push → deploy → doc
+  </pre>
+
+  <h3>pieces / choices</h3>
+  <table>
+    <thead><tr><th>piece</th><th>choice now</th><th>why</th><th>later / alternative</th></tr></thead>
+    <tbody>
+      <tr><td>source of truth</td><td><code>public/index.html</code> in git</td><td>one file, versioned, diffable</td><td>split into components if the page grows</td></tr>
+      <tr><td>author surface</td><td>claude design</td><td>it's where you plan/wireframe</td><td>author directly in-repo (lose the canvas)</td></tr>
+      <tr><td>design → repo</td><td><strong>manual export + drop</strong></td><td>claude design is auth-gated; no api/webhook</td><td>automate the pull if claude ships an export api</td></tr>
+      <tr><td>repo → live</td><td>render static, auto-deploy on push</td><td>already wired, zero-touch</td><td>netlify / vercel / cf-pages</td></tr>
+      <tr><td>what's public</td><td>only <code>public/</code></td><td>keep planning docs off the public url</td><td>password-protect the whole thing</td></tr>
+      <tr><td>changelog</td><td>git history</td><td>free, precise, per-revision</td><td>add a prose CHANGELOG.md</td></tr>
+    </tbody>
+  </table>
+
+  <h3>optional automation i can add</h3>
+  <ul>
+    <li>a <strong>folder-watch</strong>: watch <code>design/exports/</code> and auto-sync the moment you drop a file — your side becomes just "drop" (trade-off: a background watcher).</li>
+    <li>a <strong>diff view</strong>: after each sync, render a side-by-side of what changed vs the previous export.</li>
+  </ul>
+
+  <hr>
+  <h2>decisions to talk about</h2>
+  <ol>
+    <li><strong>same repo or separate?</strong> planning docs + the deployed site share one repo (<code>concierge-wireframe</code>). one source of truth, but the repo is public. ok, or split?</li>
+    <li><strong>public repo</strong> — it's public so render builds it cleanly. want it private (i'd confirm render's github app has access first)?</li>
+    <li><strong>the folder-watch</strong> — want "drop and it just deploys", or keep the explicit "sync" word as the trigger?</li>
+    <li><strong>is claude design really the home?</strong> if you'd rather plan <em>in the repo</em> (house-style .md/.html twins i can pull/push freely), we drop the manual hop entirely — but you lose the design canvas.</li>
+  </ol>
+</main>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: {
+    primaryColor: '#f6efe2', primaryTextColor: '#33302b', primaryBorderColor: '#b5763a',
+    lineColor: '#8a8272', fontSize: '14px' } });
+</script>
+</body>
+</html>
