@@ -1,0 +1,51 @@
+{
+  "scenario": "EN · sauna + pets combo quiz",
+  "live": "browser",
+  "turns": [
+    {
+      "say": "Two quick questions: is the sauna included in the price? And can I bring my small dog?",
+      "transcript": "Two quick questions. Is the sauna included in the price, and can I bring my small dog?",
+      "reply": "The sauna is free for guests who book directly with us.\n\nSmall dogs are welcome for a fifteen-euro cleaning fee.",
+      "tools": [
+        "get_hotel_info",
+        "get_hotel_info"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "sauna"
+          },
+          "result": {
+            "ok": true,
+            "topic": "sauna",
+            "facts": {
+              "sauna_wellness": "Sauna with two cabins, relaxation room and showers. Free for direct bookers (website or phone); booked elsewhere it costs €15.00 per person."
+            }
+          }
+        },
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "pets"
+          },
+          "result": {
+            "ok": true,
+            "topic": "pets",
+            "facts": {
+              "pets": "Pets allowed if kept off the furniture; €15.00 cleaning fee."
+            }
+          }
+        }
+      ],
+      "problems": []
+    }
+  ],
+  "pass": true,
+  "secs": 43
+}

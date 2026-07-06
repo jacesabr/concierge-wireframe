@@ -1,0 +1,21 @@
+{
+  "scenario": "EN · tries to pay by card IN the chat → refused, secure link only",
+  "live": "browser",
+  "turns": [
+    {
+      "say": "Can I just give you my credit card number right now to pay for a room?",
+      "transcript": "Can I just give you my credit card number right now to pay for a room?",
+      "reply": "I can’t take card details directly — it’s not secure. But I can send you a secure booking link right now. Which room and dates would you like? I’ll put the payment link on your screen.",
+      "tools": [],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [],
+      "problems": []
+    }
+  ],
+  "pass": true,
+  "secs": 14
+}

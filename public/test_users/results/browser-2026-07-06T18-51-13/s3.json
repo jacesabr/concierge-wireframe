@@ -1,0 +1,44 @@
+{
+  "scenario": "DE · breakfast quiz (times + vegetarian)",
+  "live": "browser",
+  "turns": [
+    {
+      "say": "Wann gibt es bei Ihnen am Wochenende Frühstück, und haben Sie auch vegetarische Optionen?",
+      "transcript": "Wann gibt es bei Ihnen am Wochenende Frühstück und haben Sie auch vegetarische Optionen?",
+      "reply": "Am Wochenende servieren wir Frühstück von 8:00 bis 10:00 Uhr.\n\nJa, es gibt vegetarische Optionen wie Käse, Müsli, Tomaten, Gurken, Eierspeisen, Joghurt und Pfannkuchen. Bei glutenfreier Ernährung können Sie gerne eigene Brötchen mitbringen, die wir für Sie backen.",
+      "tools": [
+        "get_hotel_info"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "Frühstück"
+          },
+          "result": {
+            "ok": true,
+            "topic": "Frühstück",
+            "facts": {
+              "breakfast": {
+                "included": "Depends on the room rate — rates named 'mit Frühstück' include it, 'ohne Frühstück' do not.",
+                "times_weekdays": "7:00 AM – 10:00 AM",
+                "times_weekends_holidays": "8:00 AM – 10:00 AM",
+                "offering": "Sausages, cheeses, muesli, tomatoes, cucumbers, boiled and scrambled eggs, yogurt, pancakes.",
+                "dietary": "Vegetarian options available; for gluten intolerance guests may bring gluten-free rolls which the kitchen will bake."
+              },
+              "food_drink": "No restaurant service, but a bar and an outdoor area serve guests until 8:00 PM. Room cleaning on request via door sign."
+            }
+          }
+        }
+      ],
+      "problems": []
+    }
+  ],
+  "pass": true,
+  "secs": 12
+}

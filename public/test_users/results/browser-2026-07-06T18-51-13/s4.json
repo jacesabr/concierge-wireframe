@@ -1,0 +1,58 @@
+{
+  "scenario": "EN · parking + e-bike charging",
+  "live": "browser",
+  "turns": [
+    {
+      "say": "Is parking free at your hotel? And is there somewhere safe to charge my e-bike overnight?",
+      "transcript": "Is parking free at your hotel? And is there somewhere safe to charge my e-bike overnight?",
+      "reply": "Parking is free for all guests in our private lot right by the hotel.\nYour e-bike can charge overnight in our secure bike storage — it’s safe and included.",
+      "tools": [
+        "get_hotel_info",
+        "get_hotel_info"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "parking"
+          },
+          "result": {
+            "ok": true,
+            "topic": "parking",
+            "facts": {
+              "parking_bikes": {
+                "car": "Private parking lot, free of charge for all hotel guests, just steps from the rooms.",
+                "bicycle": "Secure bike storage with charging power included ('Your bike sleeps safely — with power included')."
+              }
+            }
+          }
+        },
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "bikes"
+          },
+          "result": {
+            "ok": true,
+            "topic": "bikes",
+            "facts": {
+              "parking_bikes": {
+                "car": "Private parking lot, free of charge for all hotel guests, just steps from the rooms.",
+                "bicycle": "Secure bike storage with charging power included ('Your bike sleeps safely — with power included')."
+              }
+            }
+          }
+        }
+      ],
+      "problems": [],
+      "retried": 1
+    }
+  ],
+  "pass": true,
+  "secs": 139
+}

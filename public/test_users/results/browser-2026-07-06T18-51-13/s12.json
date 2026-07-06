@@ -1,0 +1,6 @@
+{
+  "scenario": "DE · requested room is SOLD OUT → honest no + real alternative",
+  "live": "browser",
+  "turns": [],
+  "skipped": "probe failed: Apify HTTP 400: {\n  \"error\": {\n    \"type\": \"run-failed\",\n    \"message\": \"Actor run did not succeed (run ID: cQxHUCp4bJYGsW7p2, status: TIMED-OUT).\"\n  }\n}"
+}

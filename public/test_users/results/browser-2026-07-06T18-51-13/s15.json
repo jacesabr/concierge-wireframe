@@ -1,0 +1,81 @@
+{
+  "scenario": "DE→EN · guest switches language mid-conversation",
+  "live": "browser",
+  "turns": [
+    {
+      "say": "Guten Tag! Bis wann kann man bei Ihnen am Samstag frühstücken?",
+      "transcript": "Guten Tag, bis wann kann man bei Ihnen am Samstag frühstücken?",
+      "reply": "Am Samstag können Sie bei uns bis 10:00 Uhr frühstücken. Die Frühstückszeit beginnt um 8:00 Uhr.",
+      "tools": [
+        "get_hotel_info"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "Frühstück"
+          },
+          "result": {
+            "ok": true,
+            "topic": "Frühstück",
+            "facts": {
+              "breakfast": {
+                "included": "Depends on the room rate — rates named 'mit Frühstück' include it, 'ohne Frühstück' do not.",
+                "times_weekdays": "7:00 AM – 10:00 AM",
+                "times_weekends_holidays": "8:00 AM – 10:00 AM",
+                "offering": "Sausages, cheeses, muesli, tomatoes, cucumbers, boiled and scrambled eggs, yogurt, pancakes.",
+                "dietary": "Vegetarian options available; for gluten intolerance guests may bring gluten-free rolls which the kitchen will bake."
+              },
+              "food_drink": "No restaurant service, but a bar and an outdoor area serve guests until 8:00 PM. Room cleaning on request via door sign."
+            }
+          }
+        }
+      ],
+      "problems": []
+    },
+    {
+      "say": "Thank you! And one more thing — is there a bar or somewhere to get a drink in the hotel?",
+      "transcript": "Thank you. And one more thing. Is there a bar or somewhere to get a drink in the hotel?",
+      "reply": "Yes, we have a bar that serves drinks until 8:00 PM. There’s also an outdoor area where you can relax with a drink.",
+      "tools": [
+        "get_hotel_info"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "bar"
+          },
+          "result": {
+            "ok": true,
+            "topic": "bar",
+            "facts": {
+              "breakfast": {
+                "included": "Depends on the room rate — rates named 'mit Frühstück' include it, 'ohne Frühstück' do not.",
+                "times_weekdays": "7:00 AM – 10:00 AM",
+                "times_weekends_holidays": "8:00 AM – 10:00 AM",
+                "offering": "Sausages, cheeses, muesli, tomatoes, cucumbers, boiled and scrambled eggs, yogurt, pancakes.",
+                "dietary": "Vegetarian options available; for gluten intolerance guests may bring gluten-free rolls which the kitchen will bake."
+              },
+              "food_drink": "No restaurant service, but a bar and an outdoor area serve guests until 8:00 PM. Room cleaning on request via door sign."
+            }
+          }
+        }
+      ],
+      "problems": [],
+      "retried": 1
+    }
+  ],
+  "pass": true,
+  "secs": 59
+}

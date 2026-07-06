@@ -1,0 +1,54 @@
+{
+  "scenario": "DE · complaint → escalation with contact card",
+  "live": "browser",
+  "turns": [
+    {
+      "say": "Unser Aufenthalt letzte Woche war leider eine Katastrophe. Ich möchte mit jemandem über eine Erstattung sprechen.",
+      "transcript": "Unser Aufenthalt letzte Woche war leider eine Katastrophe. Ich möchte mit jemandem über eine Erstattung sprechen.",
+      "reply": "Es tut mir sehr leid, dass Ihr Aufenthalt nicht zu Ihrer Zufriedenheit war. Die Angelegenheit ist leider zu wichtig für mich, um sie hier direkt zu klären.\n\nAuf Ihrem Bildschirm sehen Sie jetzt die Kontaktdaten des Hotels. Bitte schreiben Sie eine E-Mail an info@parkhotel-konz.com — das Team wird sich schnellstmöglich um Ihr Anliegen kümmern. Die Rezeption ist aktuell nicht durchgehend besetzt, daher ist die E-Mail der sicherste Weg für eine schriftliche Rückmeldung.",
+      "tools": [
+        "escalate_to_staff"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": {
+          "phone": "+49 6501 6037987",
+          "phoneNote": "landline — call only (no SMS)",
+          "email": "info@parkhotel-konz.com",
+          "recommended": "email"
+        }
+      },
+      "toolTrace": [
+        {
+          "name": "escalate_to_staff",
+          "args": {
+            "summary": "Gast möchte eine Erstattung nach einem problematischen Aufenthalt letzte Woche (2026-06-29 bis 2026-07-06) besprechen.",
+            "urgency": "routine",
+            "language": "de"
+          },
+          "result": {
+            "ok": true,
+            "contact": {
+              "phone": "+49 6501 6037987",
+              "phoneNote": "landline — call only (no SMS)",
+              "email": "info@parkhotel-konz.com",
+              "receptionHours": {
+                "weekdays": "7:00 AM – 11:00 AM staffed",
+                "weekends_holidays": "8:00 AM – 11:00 AM staffed",
+                "midday": "11:00 AM – 3:00 PM by phone only",
+                "afternoon": "3:00 PM – 8:00 PM staffed",
+                "night": "8:00 PM – 7:00 AM not staffed and not reachable by phone; in emergencies ring twice"
+              }
+            },
+            "recommendedChannel": "email",
+            "say": "The panel now shows the team's phone and email. Point the guest to email for a written reply, or the phone during reception hours if they prefer talking. Never promise a specific response time."
+          }
+        }
+      ],
+      "problems": []
+    }
+  ],
+  "pass": true,
+  "secs": 24
+}

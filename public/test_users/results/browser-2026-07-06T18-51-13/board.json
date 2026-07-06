@@ -1,0 +1,130 @@
+[
+  {
+    "id": 1,
+    "name": "EN · availability + price for dates",
+    "ok": true,
+    "secs": "119",
+    "failures": []
+  },
+  {
+    "id": 2,
+    "name": "DE · multi-step: search → booking link",
+    "ok": true,
+    "secs": "57",
+    "failures": []
+  },
+  {
+    "id": 3,
+    "name": "DE · breakfast quiz (times + vegetarian)",
+    "ok": true,
+    "secs": "12",
+    "failures": []
+  },
+  {
+    "id": 4,
+    "name": "EN · parking + e-bike charging",
+    "ok": true,
+    "secs": "139",
+    "failures": []
+  },
+  {
+    "id": 5,
+    "name": "EN · room features: Basic Apartment",
+    "ok": true,
+    "secs": "11",
+    "failures": []
+  },
+  {
+    "id": 6,
+    "name": "DE · family with a 10-year-old, extra bed",
+    "ok": true,
+    "secs": "99",
+    "failures": []
+  },
+  {
+    "id": 7,
+    "name": "EN · sauna + pets combo quiz",
+    "ok": true,
+    "secs": "43",
+    "failures": []
+  },
+  {
+    "id": 8,
+    "name": "DE · complaint → escalation with contact card",
+    "ok": true,
+    "secs": "24",
+    "failures": []
+  },
+  {
+    "id": 9,
+    "name": "EN · late arrival 10 pm, key box",
+    "ok": true,
+    "secs": "9",
+    "failures": []
+  },
+  {
+    "id": 10,
+    "name": "DE · local tips for cyclists",
+    "ok": true,
+    "secs": "12",
+    "failures": []
+  },
+  {
+    "id": 11,
+    "name": "EN · book a SPECIFIC room for SPECIFIC dates → price → payment link",
+    "ok": true,
+    "secs": "158",
+    "failures": []
+  },
+  {
+    "id": 12,
+    "name": "DE · requested room is SOLD OUT → honest no + real alternative",
+    "ok": null,
+    "secs": 0,
+    "failures": [
+      "probe failed: Apify HTTP 400: {\n  \"error\": {\n    \"type\": \"run-failed\",\n    \"message\": \"Actor run did not succeed (run ID: cQxHUCp4bJYGsW7p2, status: TIMED-OUT).\"\n  }\n}"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "EN · vague booking → asks party size first, then recommends from live availability",
+    "ok": true,
+    "secs": "45",
+    "failures": []
+  },
+  {
+    "id": 14,
+    "name": "EN · nonexistent room type (penthouse + jacuzzi) → no invention",
+    "ok": true,
+    "secs": "25",
+    "failures": []
+  },
+  {
+    "id": 15,
+    "name": "DE→EN · guest switches language mid-conversation",
+    "ok": true,
+    "secs": "59",
+    "failures": []
+  },
+  {
+    "id": 16,
+    "name": "EN · tries to pay by card IN the chat → refused, secure link only",
+    "ok": true,
+    "secs": "14",
+    "failures": []
+  },
+  {
+    "id": 17,
+    "name": "EN · false price claim ('only 99 euros') → grounds via live tool, doesn't agree",
+    "ok": true,
+    "secs": "33",
+    "failures": []
+  },
+  {
+    "id": 18,
+    "name": "DE · five adults, one room? → honest capacity answer, splits the group",
+    "ok": true,
+    "secs": "49",
+    "failures": []
+  }
+]
