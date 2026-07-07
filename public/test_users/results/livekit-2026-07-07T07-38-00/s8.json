@@ -1,0 +1,146 @@
+{
+  "scenario": "EN · rapid follow-up turns (no session bleed, realtime)",
+  "live": "livekit",
+  "turns": [
+    {
+      "say": "Is the sauna free for guests?",
+      "transcript": "Is the sauna free for guests?",
+      "reply": "The sauna is free for guests who book directly with us. If you booked through a third party, there’s a fee of 15 euros per person.",
+      "tools": [
+        "get_hotel_info"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "sauna"
+          },
+          "result": {
+            "ok": true,
+            "topic": "sauna",
+            "facts": {
+              "sauna_wellness": "Sauna with two cabins, relaxation room and showers. Free for direct bookers (website or phone); booked elsewhere it costs €15.00 per person."
+            }
+          }
+        }
+      ],
+      "guard": null,
+      "latencyMs": 5777,
+      "problems": []
+    },
+    {
+      "say": "And what about Wi-Fi?",
+      "transcript": "And what about Wi-Fi?",
+      "reply": "Wi-Fi is free for all guests and doesn’t require a password. It’s available in every room.",
+      "tools": [
+        "get_hotel_info"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "Wi-Fi"
+          },
+          "result": {
+            "ok": true,
+            "facts": {
+              "_source": "parkhotel-konz.com (FAQ, Frühstück, For-Cars-and-Bicycles, perks, attractions, contact pages), scraped 2026-07-06. Static facts only — prices/availability always live from the booking engine.",
+              "hotel": {
+                "name": "Park Hotel Konz",
+                "address": "Granastraße 26, 54329 Konz, Rheinland-Pfalz, Germany",
+                "phone": "+49 6501 6037987",
+                "email": "info@parkhotel-konz.com",
+                "website": "https://www.parkhotel-konz.com",
+                "booking": "https://direct-book.com/properties/parkhotelkonzdirect"
+              },
+              "checkin_checkout": {
+                "check_in": "3:00 PM – 8:00 PM",
+                "check_out": "until 11:00 AM",
+                "early_check_in": "Between 11:00 AM and 3:00 PM keys can be handed over, but the room may not be ready.",
+                "late_check_in": "After 8:00 PM via key box — tell the hotel on the day of arrival and they send key-collection instructions.",
+                "early_check_out": "Drop keys into the key box slot; billing must already be completed.",
+                "late_check_out": "Until 2:00 PM up to 50% of the full room rate is charged; after 2:00 PM up to 90%."
+              },
+              "reception_hours": {
+                "weekdays": "7:00 AM – 11:00 AM staffed",
+                "weekends_holidays": "8:00 AM – 11:00 AM staffed",
+                "midday": "11:00 AM – 3:00 PM by phone only",
+                "afternoon": "3:00 PM – 8:00 PM staffed",
+                "night": "8:00 PM – 7:00 AM not staffed and not reachable by phone; in emergencies ring twice"
+              },
+              "breakfast": {
+                "included": "Depends on the room rate — rates named 'mit Frühstück' include it, 'ohne Frühstück' do not.",
+                "times_weekdays": "7:00 AM – 10:00 AM",
+                "times_weekends_holidays": "8:00 AM – 10:00 AM",
+                "offering": "Sausages, cheeses, muesli, tomatoes, cucumbers, boiled and scrambled eggs, yogurt, pancakes.",
+                "dietary": "Vegetarian options available; for gluten intolerance guests may bring gluten-free rolls which the kitchen will bake."
+              },
+              "parking_bikes": {
+                "car": "Private parking lot, free of charge for all hotel guests, just steps from the rooms.",
+                "bicycle": "Secure bike storage with charging power included ('Your bike sleeps safely — with power included')."
+              },
+              "wifi": "Free password-free Wi-Fi in every room.",
+              "sauna_wellness": "Sauna with two cabins, relaxation room and showers. Free for direct bookers (website or phone); booked elsewhere it costs €15.00 per person.",
+              "food_drink": "No restaurant service, but a bar and an outdoor area serve guests until 8:00 PM. Room cleaning on request via door sign.",
+              "pets": "Pets allowed if kept off the furniture; €15.00 cleaning fee.",
+              "accessibility": "Ground-floor rooms in the Comfort and Comfort Plus categories with low-entry showers.",
+              "children": "Comfort Double Room Plus offers sofa beds or extra beds for children up to 15; baby cots available.",
+              "cancellation": "Free cancellation until 00:00 the day before arrival as a rule; group bookings (>5 rooms) may have individual conditions.",
+              "events": "No conference rooms; the breakfast room can be booked at €25.00/hour net.",
+              "airport_transfer": "Not offered.",
+              "direct_booking_perks": [
+                "Best Price Guarantee — booking direct avoids third-party fees.",
+                "Sauna access included exclusively for direct bookers.",
+                "Flexible cancellation — free until 00:00 the day before arrival.",
+                "Simple direct communication — changes and special requests handled faster."
+              ],
+              "attractions": [
+                {
+                  "name": "Freilichtmuseum Roscheider Hof",
+                  "where": "Roscheiderhof 1, 54329 Konz",
+                  "what": "Open-air and folklore museum of the SaarLorLux region, on the Saar and Mosel rivers, 8 km west of Trier and 30 km east of Luxembourg."
+                },
+                {
+                  "name": "Mosel–Saar cycling path",
+                  "where": "Konz / Wasserliesch",
+                  "what": "Easy riverside cycle route past vineyards, wine villages and Roman history; connects Saarbrücken, Trier and Koblenz."
+                },
+                {
+                  "name": "Westwallmuseum Konz",
+                  "where": "Granastraße 29, 54329 Konz — across the street from the hotel",
+                  "what": "Privately run WWII bunker museum focused on historical education."
+                },
+                {
+                  "name": "Saarmündung (Saar–Mosel confluence)",
+                  "where": "Konz",
+                  "what": "Where the Saar joins the Moselle — a popular local sight."
+                },
+                {
+                  "name": "Trier, Saarburg and Luxembourg",
+                  "where": "Day trips",
+                  "what": "The Roman city of Trier, picturesque Saarburg and Luxembourg City are all easily reachable."
+                }
+              ]
+            },
+            "note": "no topic match — returning all facts"
+          }
+        }
+      ],
+      "guard": null,
+      "latencyMs": 4515,
+      "problems": []
+    }
+  ],
+  "pass": true,
+  "secs": 21
+}

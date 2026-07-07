@@ -1,0 +1,176 @@
+{
+  "scenario": "EN · multi-turn in ONE call: search → payment link (session memory)",
+  "live": "livekit",
+  "turns": [
+    {
+      "say": "Is the Comfort Double Room Plus available July twenty-fourth to twenty-sixth for two people?",
+      "transcript": "Is the Comfort Double Room Plus available July 24-26 for two people?",
+      "reply": "Yes, the Comfort Double Room Plus is available for July 24th to 26th.\n\nIt costs 240 euros for one person with breakfast or 288 euros for two with breakfast for your stay. I’ve put the room photos on your screen. Would you like to add breakfast?",
+      "tools": [
+        "check_availability"
+      ],
+      "ui": {
+        "cards": [
+          {
+            "name": "Comfort Double Room Plus",
+            "photo": "/images/comfort-double-room-plus/img01.png",
+            "photos": [
+              "/images/comfort-double-room-plus/img01.png",
+              "/images/comfort-double-room-plus/img02.png",
+              "/images/comfort-double-room-plus/img03.png"
+            ],
+            "meta": "21 m² · courtyard side",
+            "pills": [
+              "quiet courtyard side",
+              "coffee machine",
+              "2 bottles mineral water",
+              "sofa bed / extra bed for children up to 15 (on demand)"
+            ],
+            "price": {
+              "totalStr": "240.00",
+              "perNight": 120,
+              "nights": 2
+            },
+            "available": true,
+            "unitsLeft": 0,
+            "bookUrl": "https://direct-book.com/properties/parkhotelkonzdirect?locale=de&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=224577&rateId=593479"
+          }
+        ],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "check_availability",
+          "args": {
+            "room": "224577",
+            "check_in": "2026-07-24",
+            "check_out": "2026-07-26",
+            "adults": 2
+          },
+          "result": {
+            "ok": true,
+            "capturedAt": "2026-07-07T07:32:51.843Z",
+            "room": "Comfort Double Room Plus",
+            "roomTypeId": 224577,
+            "stay": {
+              "check_in": "2026-07-24",
+              "check_out": "2026-07-26",
+              "adults": 2,
+              "children": 0
+            },
+            "available": true,
+            "unitsLeft": 0,
+            "fitsParty": true,
+            "sqm": 21,
+            "view": "courtyard",
+            "attributes": [
+              "quiet courtyard side",
+              "coffee machine",
+              "2 bottles mineral water",
+              "sofa bed / extra bed for children up to 15 (on demand)"
+            ],
+            "photos": [
+              "/images/comfort-double-room-plus/img01.png",
+              "/images/comfort-double-room-plus/img02.png",
+              "/images/comfort-double-room-plus/img03.png"
+            ],
+            "rates": [
+              {
+                "rateId": "593479",
+                "rateName": "2 Personen ohne Frühstück 2+ Nächte",
+                "totalForStay": 240,
+                "totalStr": "240.00"
+              },
+              {
+                "rateId": "592608",
+                "rateName": "1 Person mit Frühstück 2+ Nächte",
+                "totalForStay": 240,
+                "totalStr": "240.00"
+              },
+              {
+                "rateId": "592606",
+                "rateName": "2 Personen mit Frühstück 2+ Nächte",
+                "totalForStay": 288,
+                "totalStr": "288.00"
+              }
+            ],
+            "bookingLink": "https://direct-book.com/properties/parkhotelkonzdirect?locale=de&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=224577&rateId=593479"
+          }
+        }
+      ],
+      "guard": null,
+      "latencyMs": 12334,
+      "problems": []
+    },
+    {
+      "say": "Great, I will take it without breakfast. Send me the booking link please.",
+      "transcript": "Great, I will take it without breakfast. Send me the booking link, please.",
+      "reply": "Perfect! Your secure booking link is now on your screen. You’ll complete payment on the hotel’s official page — the price there is final. Enjoy your stay!",
+      "tools": [
+        "create_payment_link"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [
+          {
+            "room": "Comfort Double Room Plus",
+            "url": "https://direct-book.com/properties/parkhotelkonzdirect?locale=en&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=224577&rateId=593479",
+            "stay": {
+              "check_in": "2026-07-24",
+              "check_out": "2026-07-26",
+              "adults": 2,
+              "children": 0
+            }
+          }
+        ],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "create_payment_link",
+          "args": {
+            "room": "224577",
+            "check_in": "2026-07-24",
+            "check_out": "2026-07-26",
+            "adults": 2,
+            "children": 0,
+            "rate_id": "593479",
+            "language": "en"
+          },
+          "result": {
+            "ok": true,
+            "room": "Comfort Double Room Plus",
+            "stay": {
+              "check_in": "2026-07-24",
+              "check_out": "2026-07-26",
+              "adults": 2,
+              "children": 0
+            },
+            "paymentLink": "https://direct-book.com/properties/parkhotelkonzdirect?locale=en&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=224577&rateId=593479",
+            "note": "Official hotel booking page, pre-filled with room and dates. The final price shown at checkout is authoritative. Card data stays with the payment provider — never in this chat."
+          }
+        }
+      ],
+      "guard": null,
+      "latencyMs": 8268,
+      "problems": []
+    }
+  ],
+  "probe": {
+    "params": {
+      "check_in": "2026-07-24",
+      "check_out": "2026-07-26",
+      "adults": 2
+    },
+    "placeholders": {
+      "availableRoom": "Comfort Double Room Plus",
+      "availableRoomRegex": "Comfort",
+      "availablePrice": "240.00",
+      "soldOutRoom": "Standard Double Room",
+      "soldOutRoomRegex": "Standard"
+    }
+  },
+  "pass": true,
+  "secs": 38
+}

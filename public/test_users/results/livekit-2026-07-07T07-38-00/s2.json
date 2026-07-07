@@ -1,0 +1,370 @@
+{
+  "scenario": "DE · booking search with live price (markers resolved in realtime)",
+  "live": "livekit",
+  "turns": [
+    {
+      "say": "Guten Tag! Was kostet ein Doppelzimmer für zwei Personen vom vierundzwanzigsten bis sechsundzwanzigsten Juli?",
+      "transcript": "Guten Tag! Was kostet ein Doppelzimmer für zwei Personen vom 24. Bis 26. Juli?",
+      "reply": "Leider sind die Standard- und Comfort-Doppelzimmer sowie das Apartment für diese Daten bereits ausgebucht.\n\nNur das Comfort Double Room Plus ist noch verfügbar. Es liegt ruhig zum Innenhof, hat eine kleine Sitzecke und kostet für Ihren Aufenthalt 288 Euro mit Frühstück oder 240 Euro ohne Frühstück.\n\nMöchten Sie es buchen oder mehr Details sehen? Ich habe die Optionen auf Ihrem Bildschirm hinterlegt.",
+      "tools": [
+        "check_availability",
+        "check_availability",
+        "check_availability",
+        "check_availability"
+      ],
+      "ui": {
+        "cards": [
+          {
+            "name": "Standard Double Room",
+            "photo": "/images/standard-double-room/img01.png",
+            "photos": [
+              "/images/standard-double-room/img01.png",
+              "/images/standard-double-room/img02.png",
+              "/images/standard-double-room/img03.png",
+              "/images/standard-double-room/img04.png"
+            ],
+            "meta": "15 m² · street side",
+            "pills": [
+              "street side"
+            ],
+            "price": {
+              "totalStr": "182.00",
+              "perNight": 91,
+              "nights": 2
+            },
+            "available": false,
+            "unitsLeft": 0,
+            "bookUrl": "https://direct-book.com/properties/parkhotelkonzdirect?locale=de&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=235426&rateId=592642"
+          },
+          {
+            "name": "Comfort Double Room",
+            "photo": "/images/comfort-double-room/img01.png",
+            "photos": [
+              "/images/comfort-double-room/img01.png",
+              "/images/comfort-double-room/img03.png"
+            ],
+            "meta": "19 m² · courtyard side",
+            "pills": [
+              "quiet courtyard side",
+              "coffee machine",
+              "2 bottles mineral water"
+            ],
+            "price": {
+              "totalStr": "230.00",
+              "perNight": 115,
+              "nights": 2
+            },
+            "available": false,
+            "unitsLeft": 0,
+            "bookUrl": "https://direct-book.com/properties/parkhotelkonzdirect?locale=de&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=224578&rateId=592584"
+          },
+          {
+            "name": "Comfort Double Room Plus",
+            "photo": "/images/comfort-double-room-plus/img01.png",
+            "photos": [
+              "/images/comfort-double-room-plus/img01.png",
+              "/images/comfort-double-room-plus/img02.png",
+              "/images/comfort-double-room-plus/img03.png"
+            ],
+            "meta": "21 m² · courtyard side",
+            "pills": [
+              "quiet courtyard side",
+              "coffee machine",
+              "2 bottles mineral water",
+              "sofa bed / extra bed for children up to 15 (on demand)"
+            ],
+            "price": {
+              "totalStr": "240.00",
+              "perNight": 120,
+              "nights": 2
+            },
+            "available": true,
+            "unitsLeft": 0,
+            "bookUrl": "https://direct-book.com/properties/parkhotelkonzdirect?locale=de&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=224577&rateId=593479"
+          },
+          {
+            "name": "Basic Apartment",
+            "photo": "/images/basic-apartment/img01.png",
+            "photos": [
+              "/images/basic-apartment/img01.png",
+              "/images/basic-apartment/img02.png",
+              "/images/basic-apartment/img03.png",
+              "/images/basic-apartment/img04.png",
+              "/images/basic-apartment/img05.png",
+              "/images/basic-apartment/img07.png"
+            ],
+            "meta": "32 m² · courtyard side",
+            "pills": [
+              "small kitchen",
+              "balcony",
+              "coffee machine",
+              "2 bottles mineral water"
+            ],
+            "price": {
+              "totalStr": "242.00",
+              "perNight": 121,
+              "nights": 2
+            },
+            "available": false,
+            "unitsLeft": 0,
+            "bookUrl": "https://direct-book.com/properties/parkhotelkonzdirect?locale=de&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=224579&rateId=592568"
+          }
+        ],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "check_availability",
+          "args": {
+            "room": "Standard Double Room",
+            "check_in": "2026-07-24",
+            "check_out": "2026-07-26",
+            "adults": 2
+          },
+          "result": {
+            "ok": true,
+            "capturedAt": "2026-07-07T07:32:51.843Z",
+            "room": "Standard Double Room",
+            "roomTypeId": 235426,
+            "stay": {
+              "check_in": "2026-07-24",
+              "check_out": "2026-07-26",
+              "adults": 2,
+              "children": 0
+            },
+            "available": false,
+            "unitsLeft": 0,
+            "fitsParty": true,
+            "sqm": 15,
+            "view": "street",
+            "attributes": [
+              "street side"
+            ],
+            "photos": [
+              "/images/standard-double-room/img01.png",
+              "/images/standard-double-room/img02.png",
+              "/images/standard-double-room/img03.png",
+              "/images/standard-double-room/img04.png"
+            ],
+            "rates": [
+              {
+                "rateId": "592642",
+                "rateName": "2 Personen ohne Frühstück 2+ Nächte",
+                "totalForStay": 182,
+                "totalStr": "182.00"
+              },
+              {
+                "rateId": "554636",
+                "rateName": "2 Personen ohne Frühstück",
+                "totalForStay": 212,
+                "totalStr": "212.00"
+              },
+              {
+                "rateId": "592641",
+                "rateName": "2 Personen mit Frühstück 2+ Nächte",
+                "totalForStay": 230,
+                "totalStr": "230.00"
+              }
+            ],
+            "bookingLink": "https://direct-book.com/properties/parkhotelkonzdirect?locale=de&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=235426&rateId=592642"
+          }
+        },
+        {
+          "name": "check_availability",
+          "args": {
+            "room": "Comfort Double Room",
+            "check_in": "2026-07-24",
+            "check_out": "2026-07-26",
+            "adults": 2
+          },
+          "result": {
+            "ok": true,
+            "capturedAt": "2026-07-07T07:32:51.843Z",
+            "room": "Comfort Double Room",
+            "roomTypeId": 224578,
+            "stay": {
+              "check_in": "2026-07-24",
+              "check_out": "2026-07-26",
+              "adults": 2,
+              "children": 0
+            },
+            "available": false,
+            "unitsLeft": 0,
+            "fitsParty": true,
+            "sqm": 19,
+            "view": "courtyard",
+            "attributes": [
+              "quiet courtyard side",
+              "coffee machine",
+              "2 bottles mineral water"
+            ],
+            "photos": [
+              "/images/comfort-double-room/img01.png",
+              "/images/comfort-double-room/img03.png"
+            ],
+            "rates": [
+              {
+                "rateId": "592584",
+                "rateName": "2 Personen ohne Frühstück 2+ Nächte",
+                "totalForStay": 230,
+                "totalStr": "230.00"
+              },
+              {
+                "rateId": "592604",
+                "rateName": "1 Person mit Frühstück 2+ Nächte",
+                "totalForStay": 234,
+                "totalStr": "234.00"
+              },
+              {
+                "rateId": "593480",
+                "rateName": "2 Personen mit Frühstück 2+ Nächte",
+                "totalForStay": 270,
+                "totalStr": "270.00"
+              }
+            ],
+            "bookingLink": "https://direct-book.com/properties/parkhotelkonzdirect?locale=de&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=224578&rateId=592584"
+          }
+        },
+        {
+          "name": "check_availability",
+          "args": {
+            "room": "Comfort Double Room Plus",
+            "check_in": "2026-07-24",
+            "check_out": "2026-07-26",
+            "adults": 2
+          },
+          "result": {
+            "ok": true,
+            "capturedAt": "2026-07-07T07:32:51.843Z",
+            "room": "Comfort Double Room Plus",
+            "roomTypeId": 224577,
+            "stay": {
+              "check_in": "2026-07-24",
+              "check_out": "2026-07-26",
+              "adults": 2,
+              "children": 0
+            },
+            "available": true,
+            "unitsLeft": 0,
+            "fitsParty": true,
+            "sqm": 21,
+            "view": "courtyard",
+            "attributes": [
+              "quiet courtyard side",
+              "coffee machine",
+              "2 bottles mineral water",
+              "sofa bed / extra bed for children up to 15 (on demand)"
+            ],
+            "photos": [
+              "/images/comfort-double-room-plus/img01.png",
+              "/images/comfort-double-room-plus/img02.png",
+              "/images/comfort-double-room-plus/img03.png"
+            ],
+            "rates": [
+              {
+                "rateId": "593479",
+                "rateName": "2 Personen ohne Frühstück 2+ Nächte",
+                "totalForStay": 240,
+                "totalStr": "240.00"
+              },
+              {
+                "rateId": "592608",
+                "rateName": "1 Person mit Frühstück 2+ Nächte",
+                "totalForStay": 240,
+                "totalStr": "240.00"
+              },
+              {
+                "rateId": "592606",
+                "rateName": "2 Personen mit Frühstück 2+ Nächte",
+                "totalForStay": 288,
+                "totalStr": "288.00"
+              }
+            ],
+            "bookingLink": "https://direct-book.com/properties/parkhotelkonzdirect?locale=de&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=224577&rateId=593479"
+          }
+        },
+        {
+          "name": "check_availability",
+          "args": {
+            "room": "Basic Apartment",
+            "check_in": "2026-07-24",
+            "check_out": "2026-07-26",
+            "adults": 2
+          },
+          "result": {
+            "ok": true,
+            "capturedAt": "2026-07-07T07:32:51.843Z",
+            "room": "Basic Apartment",
+            "roomTypeId": 224579,
+            "stay": {
+              "check_in": "2026-07-24",
+              "check_out": "2026-07-26",
+              "adults": 2,
+              "children": 0
+            },
+            "available": false,
+            "unitsLeft": 0,
+            "fitsParty": true,
+            "sqm": 32,
+            "view": "courtyard",
+            "attributes": [
+              "small kitchen",
+              "balcony",
+              "coffee machine",
+              "2 bottles mineral water"
+            ],
+            "photos": [
+              "/images/basic-apartment/img01.png",
+              "/images/basic-apartment/img02.png",
+              "/images/basic-apartment/img03.png",
+              "/images/basic-apartment/img04.png",
+              "/images/basic-apartment/img05.png",
+              "/images/basic-apartment/img07.png"
+            ],
+            "rates": [
+              {
+                "rateId": "592568",
+                "rateName": "2 Personen ohne Frühstück 2+ Nächte",
+                "totalForStay": 242,
+                "totalStr": "242.00"
+              },
+              {
+                "rateId": "592567",
+                "rateName": "2 Personen mit Frühstück 2+ Nächte",
+                "totalForStay": 282,
+                "totalStr": "282.00"
+              },
+              {
+                "rateId": "578517",
+                "rateName": "2 Personen mit Frühstück",
+                "totalForStay": 312,
+                "totalStr": "312.00"
+              }
+            ],
+            "bookingLink": "https://direct-book.com/properties/parkhotelkonzdirect?locale=de&currency=EUR&checkInDate=2026-07-24&checkOutDate=2026-07-26&items%5B0%5D%5Badults%5D=2&items%5B0%5D%5Bchildren%5D=0&items%5B0%5D%5Binfants%5D=0&roomTypeId=224579&rateId=592568"
+          }
+        }
+      ],
+      "guard": null,
+      "latencyMs": 9022,
+      "problems": []
+    }
+  ],
+  "probe": {
+    "params": {
+      "check_in": "2026-07-24",
+      "check_out": "2026-07-26",
+      "adults": 2
+    },
+    "placeholders": {
+      "availableRoom": "Comfort Double Room Plus",
+      "availableRoomRegex": "Comfort",
+      "availablePrice": "240.00",
+      "soldOutRoom": "Standard Double Room",
+      "soldOutRoomRegex": "Standard"
+    }
+  },
+  "pass": true,
+  "secs": 21
+}

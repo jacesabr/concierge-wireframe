@@ -1,0 +1,73 @@
+{
+  "scenario": "DE→EN · language switch inside one call",
+  "live": "livekit",
+  "turns": [
+    {
+      "say": "Guten Tag! Kann ich meinen kleinen Hund mitbringen?",
+      "transcript": "Guten Tag, kann ich meinen kleinen Hund mitbringen?",
+      "reply": "Guten Tag! Ja, Sie dürfen Ihren kleinen Hund mitbringen. Es fällt eine Reinigungspauschale von 15 Euro an. Möchten Sie ein Zimmer für Ihren Aufenthalt reservieren?",
+      "tools": [
+        "get_hotel_info"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "pets"
+          },
+          "result": {
+            "ok": true,
+            "topic": "pets",
+            "facts": {
+              "pets": "Pets allowed if kept off the furniture; €15.00 cleaning fee."
+            }
+          }
+        }
+      ],
+      "guard": null,
+      "latencyMs": 5788,
+      "problems": []
+    },
+    {
+      "say": "Thank you! And is there parking at the hotel?",
+      "transcript": "Thank you. And is there parking at the hotel?",
+      "reply": "Yes, we have a private parking lot right at the hotel, free of charge for all guests. Would you like me to check room availability for your stay?",
+      "tools": [
+        "get_hotel_info"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "parking"
+          },
+          "result": {
+            "ok": true,
+            "topic": "parking",
+            "facts": {
+              "parking_bikes": {
+                "car": "Private parking lot, free of charge for all hotel guests, just steps from the rooms.",
+                "bicycle": "Secure bike storage with charging power included ('Your bike sleeps safely — with power included')."
+              }
+            }
+          }
+        }
+      ],
+      "guard": null,
+      "latencyMs": 4770,
+      "problems": []
+    }
+  ],
+  "pass": true,
+  "secs": 25
+}

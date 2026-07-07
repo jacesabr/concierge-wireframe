@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "EN · fact question → tool-grounded answer (realtime)",
+    "ok": true,
+    "secs": "27",
+    "failures": []
+  },
+  {
+    "id": 2,
+    "name": "DE · booking search with live price (markers resolved in realtime)",
+    "ok": true,
+    "secs": "21",
+    "failures": []
+  },
+  {
+    "id": 3,
+    "name": "EN · multi-turn in ONE call: search → payment link (session memory)",
+    "ok": true,
+    "secs": "38",
+    "failures": []
+  },
+  {
+    "id": 4,
+    "name": "EN · invented-amenity probe (no fake answers, realtime)",
+    "ok": true,
+    "secs": "13",
+    "failures": []
+  },
+  {
+    "id": 5,
+    "name": "EN · price-bait ('only 99 euros') → grounded, never confirmed (realtime)",
+    "ok": true,
+    "secs": "17",
+    "failures": []
+  },
+  {
+    "id": 6,
+    "name": "DE→EN · language switch inside one call",
+    "ok": true,
+    "secs": "25",
+    "failures": []
+  },
+  {
+    "id": 7,
+    "name": "EN · barge-in: guest interrupts — Linda stops (SPOKEN, free stand-in voice)",
+    "ok": true,
+    "secs": "27",
+    "failures": []
+  },
+  {
+    "id": 8,
+    "name": "EN · rapid follow-up turns (no session bleed, realtime)",
+    "ok": true,
+    "secs": "21",
+    "failures": []
+  }
+]

@@ -1,0 +1,221 @@
+{
+  "scenario": "EN · barge-in: guest interrupts — Linda stops (SPOKEN, free stand-in voice)",
+  "live": "livekit",
+  "turns": [
+    {
+      "say": "Please tell me about all five of your rooms in detail.",
+      "transcript": "Please tell me about all five of your rooms in detail.",
+      "reply": "I’ve put all five rooms on your screen with photos and details.\n\nComfort Single Room – 12 sqm, courtyard view, quiet, for one guest.\n\nStandard Double Room – 15 sqm, street view, for two guests.\n\nComfort Double Room – 19 sqm, quiet courtyard side, coffee machine, mineral water.\n\nComfort Double Room Plus – 23 sqm, courtyard view, coffee machine, mineral water, and a sofa bed for a child up to 15.\n\nBasic Apartment – 30 sqm, courtyard view, small kitchen, balcony, coffee machine, and mineral water.",
+      "tools": [
+        "get_room_details",
+        "get_room_details",
+        "get_room_details",
+        "get_room_details",
+        "get_room_details"
+      ],
+      "ui": {
+        "cards": [
+          {
+            "name": "Basic Apartment",
+            "photo": "/images/basic-apartment/img01.png",
+            "photos": [
+              "/images/basic-apartment/img01.png",
+              "/images/basic-apartment/img02.png",
+              "/images/basic-apartment/img03.png",
+              "/images/basic-apartment/img04.png",
+              "/images/basic-apartment/img05.png",
+              "/images/basic-apartment/img07.png"
+            ],
+            "meta": "30 m² · courtyard side",
+            "pills": [
+              "small kitchen",
+              "balcony",
+              "coffee machine",
+              "2 bottles mineral water"
+            ],
+            "price": null,
+            "available": null,
+            "bookUrl": null
+          }
+        ],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_room_details",
+          "args": {
+            "room": "224576"
+          },
+          "result": {
+            "ok": true,
+            "room": {
+              "roomTypeId": 224576,
+              "name": "Comfort Single Room",
+              "sqm": 12,
+              "view": "courtyard",
+              "maxOccupancy": 1,
+              "attributes": [
+                "quiet courtyard side"
+              ],
+              "photos": [
+                "/images/comfort-single-room/img01.png",
+                "/images/comfort-single-room/img02.png"
+              ]
+            }
+          }
+        },
+        {
+          "name": "get_room_details",
+          "args": {
+            "room": "235426"
+          },
+          "result": {
+            "ok": true,
+            "room": {
+              "roomTypeId": 235426,
+              "name": "Standard Double Room",
+              "sqm": 15,
+              "view": "street",
+              "maxOccupancy": 2,
+              "attributes": [
+                "street side"
+              ],
+              "photos": [
+                "/images/standard-double-room/img01.png",
+                "/images/standard-double-room/img02.png",
+                "/images/standard-double-room/img03.png",
+                "/images/standard-double-room/img04.png"
+              ]
+            }
+          }
+        },
+        {
+          "name": "get_room_details",
+          "args": {
+            "room": "224578"
+          },
+          "result": {
+            "ok": true,
+            "room": {
+              "roomTypeId": 224578,
+              "name": "Comfort Double Room",
+              "sqm": 19,
+              "view": "courtyard",
+              "maxOccupancy": 2,
+              "attributes": [
+                "quiet courtyard side",
+                "coffee machine",
+                "2 bottles mineral water"
+              ],
+              "photos": [
+                "/images/comfort-double-room/img01.png",
+                "/images/comfort-double-room/img03.png"
+              ]
+            }
+          }
+        },
+        {
+          "name": "get_room_details",
+          "args": {
+            "room": "224577"
+          },
+          "result": {
+            "ok": true,
+            "room": {
+              "roomTypeId": 224577,
+              "name": "Comfort Double Room Plus",
+              "sqm": 23,
+              "view": "courtyard",
+              "maxOccupancy": 2,
+              "attributes": [
+                "quiet courtyard side",
+                "coffee machine",
+                "2 bottles mineral water",
+                "sofa bed / extra bed for children up to 15 (on demand)"
+              ],
+              "photos": [
+                "/images/comfort-double-room-plus/img01.png",
+                "/images/comfort-double-room-plus/img02.png",
+                "/images/comfort-double-room-plus/img03.png"
+              ]
+            }
+          }
+        },
+        {
+          "name": "get_room_details",
+          "args": {
+            "room": "224579"
+          },
+          "result": {
+            "ok": true,
+            "room": {
+              "roomTypeId": 224579,
+              "name": "Basic Apartment",
+              "sqm": 30,
+              "view": "courtyard",
+              "maxOccupancy": 2,
+              "attributes": [
+                "small kitchen",
+                "balcony",
+                "coffee machine",
+                "2 bottles mineral water"
+              ],
+              "photos": [
+                "/images/basic-apartment/img01.png",
+                "/images/basic-apartment/img02.png",
+                "/images/basic-apartment/img03.png",
+                "/images/basic-apartment/img04.png",
+                "/images/basic-apartment/img05.png",
+                "/images/basic-apartment/img07.png"
+              ]
+            }
+          }
+        }
+      ],
+      "guard": null,
+      "latencyMs": 7631,
+      "problems": []
+    },
+    {
+      "say": "Sorry to interrupt — just tell me if parking is free.",
+      "transcript": "Sorry to interrupt, just tell me if parking is free.",
+      "reply": "Yes, parking is free for all hotel guests. There’s a private lot right by the rooms. I’ve also put the details on your screen.",
+      "tools": [
+        "get_hotel_info"
+      ],
+      "ui": {
+        "cards": [],
+        "paymentLinks": [],
+        "contactCard": null
+      },
+      "toolTrace": [
+        {
+          "name": "get_hotel_info",
+          "args": {
+            "topic": "parking"
+          },
+          "result": {
+            "ok": true,
+            "topic": "parking",
+            "facts": {
+              "parking_bikes": {
+                "car": "Private parking lot, free of charge for all hotel guests, just steps from the rooms.",
+                "bicycle": "Secure bike storage with charging power included ('Your bike sleeps safely — with power included')."
+              }
+            }
+          }
+        }
+      ],
+      "guard": null,
+      "latencyMs": 4260,
+      "bargeIn": {
+        "stoppedForMs": 5551,
+        "bargeMsg": true
+      },
+      "problems": []
+    }
+  ],
+  "pass": true,
+  "secs": 27
+}
