@@ -83,6 +83,9 @@
   .taudio a,.taud{color:var(--accent);text-decoration:none;font-family:var(--mono);font-size:10px;}
   .tdata{font-family:var(--mono);font-size:10.5px;color:#4a453b;background:var(--card);border:1.5px dashed var(--line);border-radius:10px;padding:8px 11px;margin:6px 0 10px;line-height:1.6;}
   .tdata b{color:var(--accent);font-family:var(--mono);}
+  details{border:1.5px solid var(--line);border-radius:12px;background:var(--panel2);padding:9px 13px;margin:9px 0;}
+  summary{font-family:var(--grot);font-weight:600;font-size:13.5px;color:var(--head);cursor:pointer;}
+  details ul{margin:8px 0 2px;}
   .targ{color:var(--muted);}
 </style>
 </head>
@@ -133,7 +136,7 @@
       <li><strong>widget</strong> (<code>widget/widget.js</code>) — floating mic + panel, one script tag, Shadow-DOM isolated, connects nothing until the mic is tapped. records the guest, sends audio to our backend, plays the spoken answer, renders room cards / payment rows / the team-contact card. <strong>on desktop</strong> the panel floats bottom-right over the page (<a href="test_users/results/ui-context/1280x800-greeting.png">see it</a>); <strong>on phones (≤520px) opening it goes full-screen</strong> — chat filling the display, mic docked at the bottom (<a href="test_users/results/ui-context/390x844-greeting.png">see it</a>).</li>
       <li><strong>agent (the brain)</strong> (<code>server/agent.js</code>) — <strong>Mistral</strong> with tool calling; receptionist persona only — it carries <strong>no hotel facts in memory</strong> (client decision 2026-07-06: every fact comes from a tool call in that turn, so every answer has verifiable provenance); speaks DE/EN, books, escalates.</li>
       <li><strong>MCP tools</strong> (<code>mcp/functions/</code> — one file per ability, 8 registered) + a <strong>stdio MCP server</strong> (<code>mcp/server.js</code>) any MCP client can mount.</li>
-      <li><strong>voice transport — LiveKit realtime call (SHIPPED 2026-07-08</strong>, build log: <code>livekit/PLAN.md</code>): tap once → the widget joins a LiveKit room; the in-process agent session (<code>livekit/agent-session.js</code>) does <strong>server-side turn detection</strong> (silero VAD — never browser loudness, per client decision), hears via the same Voxtral, thinks with the same brain/tools, streams Linda back (ElevenLabs PCM streaming) and supports <strong>barge-in</strong>; captions/cards ride the data channel into the same panel renderers. measured: fact answers ~4.5–5.5 s from end of speech; barge-in stops Linda mid-sentence (§11 scenario 7). closing the panel ends the call — no mic behind a closed panel. <strong>while tools run she says so</strong> ("One moment please — let me see what's available…", DE/EN, cached filler audio = near-zero repeat cost), and <strong>a call auto-ends after 60 s without meaningful speech</strong> (only words that actually transcribe reset the clock — background noise doesn't; saves LiveKit minutes + server compute). <strong>fallback:</strong> any connect failure drops silently to the proven HTTP tap-to-talk loop (17/17 record, artifacts in repo); greeting TTS pre-warmed at boot; long waits talk through the status line. zero new vendors: LiveKit is transport only (free tier), all AI stays on the existing keys.</li>
+      <li><strong>voice transport — LiveKit realtime call (SHIPPED 2026-07-08</strong>, build log: <code>livekit/PLAN.md</code>): tap once → the widget joins a LiveKit room; the in-process agent session (<code>livekit/agent-session.js</code>) does <strong>server-side turn detection</strong> (silero VAD — never browser loudness, per client decision), hears via the same Voxtral, thinks with the same brain/tools, streams Linda back (ElevenLabs PCM streaming) and supports <strong>barge-in</strong>; captions/cards ride the data channel into the same panel renderers. measured: fact answers ~4.5–5.5 s from end of speech; barge-in stops Linda mid-sentence (§11 scenario 7). closing the panel ends the call — no mic behind a closed panel. <strong>while tools run she says so</strong> ("One moment please — let me see what's available…", DE/EN, cached filler audio = near-zero repeat cost), and <strong>a call auto-ends after 60 s without meaningful speech</strong> (only words that actually transcribe reset the clock — background noise doesn't; the check pauses while the guest is mid-sentence, words are being transcribed, tools run, or Linda speaks — waiting for a slow lookup can never hang up on you; saves LiveKit minutes + server compute). a second "thank you for your patience" filler lands at ~20 s of tool time. <strong>fallback:</strong> any connect failure drops silently to the proven HTTP tap-to-talk loop (17/17 record, artifacts in repo); greeting TTS pre-warmed at boot; long waits talk through the status line. zero new vendors: LiveKit is transport only (free tier), all AI stays on the existing keys.</li>
       <li><strong>sources of truth</strong> — booking engine (live prices via the WAF capture), marketing site (static facts in <code>hotel_information/</code>), and for escalations the hotel's <strong>own phone/email presented to the guest</strong> (active staff alerts deferred — see §5).</li>
     </ul>
     <div class="rules"><strong>three rules that never bend — and how each is enforced:</strong> (1) the assistant only states a room / price / date / hotel fact that came from a tool call in that conversation (prompt rule + the test suite fails any fact answer without tool provenance); (2) <strong>prices are correct BY CONSTRUCTION</strong> (<code>server/prices.js</code>, client decision 2026-07-07): the model may never write money digits — tools yield a numbered PRICE MENU and the model writes <code>{{Pn}}</code> markers that CODE replaces with the exact tool values; raw digits or an unknown marker are objective violations that swap the reply for a fixed "I can't confirm that — here is the team" + contact card <em>(the older regex truth-checker is retired)</em>; (3) new abilities are added as new tools, so the product grows without rewrites. the panel itself cannot lie by construction: cards, prices, links and contact buttons are code-rendered from tool results only.</div>
@@ -170,20 +173,47 @@
 
   <section>
     <h2><span class="n">5</span> the MCP tools <em>(8 registered, all complete)</em></h2>
-    <p>one function per ability (<code>mcp/functions/*.js</code>); all return structured JSON the agent narrates and the panel renders as cards. also mountable by any MCP client via <code>node mcp/server.js</code> (stdio).</p>
-    <table>
-      <thead><tr><th>tool</th><th>source</th><th>does</th><th>status</th></tr></thead>
-      <tbody>
-        <tr><td><code>search_rooms</code></td><td>booking (live)</td><td>rooms + live stay-total per room, availability, photos</td><td><span class="ok">✅ complete</span></td></tr>
-        <tr><td><code>check_availability</code></td><td>booking (live)</td><td>one room open for dates? at what rate — and renders that room's card, so "it's on your screen" is always true</td><td><span class="ok">✅ complete</span></td></tr>
-        <tr><td><code>get_room_details</code></td><td>scraped + booking</td><td>photos, size, view, amenities (+ live total if dates given)</td><td><span class="ok">✅ complete</span></td></tr>
-        <tr><td><code>get_hotel_info</code></td><td>scraped (<code>facts.json</code>)</td><td><strong>the only source of hotel facts</strong> (times, policies, fees, amenities) — topic-filtered; the agent carries none in memory</td><td><span class="ok">✅ complete</span></td></tr>
-        <tr><td><code>create_payment_link</code></td><td>booking</td><td>secure pre-filled deep-link to official checkout</td><td><span class="ok">✅ complete</span></td></tr>
-        <tr><td><code>escalate_to_staff</code></td><td>static contact</td><td><strong>presents the hotel's phone + email</strong> (tel/mailto buttons + hours guidance) and logs the escalation — <strong>present-contact mode</strong></td><td><span class="ok">✅ complete</span></td></tr>
-        <tr><td><code>check_promotions</code></td><td>scraped</td><td>direct-booking perks (real, from the site)</td><td><span class="ok">✅ complete</span></td></tr>
-        <tr><td><code>get_local_recommendations</code></td><td>scraped</td><td>attractions/day trips, interest-filtered</td><td><span class="ok">✅ complete</span></td></tr>
-      </tbody>
-    </table>
+    <p><strong>what MCP is, and why we use it:</strong> MCP (Model Context Protocol) is a standard way to give an AI <em>hands</em> — each ability is a typed function ("tool") the model can call; the tool returns <strong>data</strong>, code renders it, and the model may only narrate what came back. why: <strong>grounding</strong> (every fact/price must arrive through a tool → nothing is invented), <strong>auditability</strong> (every call + payload is recorded as toolTrace — §11 shows them verbatim), and <strong>reuse</strong> (the same 8 tools serve the HTTP loop, the realtime call, and any external MCP client via <code>node mcp/server.js</code>). booking inputs are a <strong>structured contract</strong> (<code>mcp/lib/booking-requirements.js</code>): tool schemas, the prompt's asking-rules and the tool-boundary rejection are all generated from one file — party size can never be assumed (a code rail also rejects booking calls whose party size the guest never expressed). all 8 endpoints ✅ complete:</p>
+    <details><summary><b>search_rooms</b> — live availability + prices for a stay (booking engine)</summary>
+      <ul><li><strong>holds/does:</strong> nothing static — every call runs a live SiteMinder capture (10-min cache): per room → available?, units left, <code>fitsParty</code>, live total + per-night rates (feeding the price menu), photos/amenities merged from the scraped data; renders the room <strong>cards</strong>.</li>
+      <li><strong>when the AI calls it:</strong> open-ended availability/booking asks ("what's free…?") — but only AFTER the guest stated dates + party size (schema requires them; the tool rejects calls without them).</li>
+      <li><strong>example:</strong> guest: "what's available Jul 24–26 for 2 adults?" → <code>search_rooms(check_in, check_out, adults:2, children:0)</code> → returns Comfort Double Plus ✓ €240 total, others sold out → she recommends it, cards appear, price spoken via <code>{{P1}}</code> marker.</li></ul>
+    </details>
+    <details><summary><b>check_availability</b> — one specific room open? at what rate</summary>
+      <ul><li><strong>holds/does:</strong> same live capture, filtered to one room: available/units/rates + capacity note when the party exceeds the room ("NOT sold out — too small for this group"); returns photos + booking link and renders that room's card so "it's on your screen" is always true.</li>
+      <li><strong>when:</strong> the guest names a room ("is the Basic Apartment free…?"); same guest-stated-inputs rule.</li>
+      <li><strong>example:</strong> "Ist das Standard-Doppelzimmer am 24.–26. frei? (2 Erw.)" → sold out → she says so FIRST, then recommends the available alternative from the same capture.</li></ul>
+    </details>
+    <details><summary><b>get_room_details</b> — one room's features (scraped, + live total if dates given)</summary>
+      <ul><li><strong>holds:</strong> the scraped room sheet — photos (22 across 5 rooms), m², view, amenities list.</li>
+      <li><strong>when:</strong> feature questions ("does the apartment have a kitchen?") — no dates needed.</li>
+      <li><strong>example:</strong> "what's special about the Basic Apartment?" → <code>get_room_details(room)</code> → 30 m², kitchen, balcony + 6 photos → card renders, she describes only what the tool returned.</li></ul>
+    </details>
+    <details><summary><b>get_hotel_info</b> — THE fact store (facts.json, topic-filtered)</summary>
+      <ul><li><strong>holds:</strong> every hotel fact — check-in/out + key-box late arrival, reception hours, breakfast times + dietary, parking + e-bike charging, Wi-Fi, sauna (free for direct bookers), bar, <strong>pets (15 € fee — fee amounts feed the price menu)</strong>, accessibility, children/extra beds, cancellation, direct-booking perks. the agent's prompt holds NONE of this — this tool is the only source, so every fact answer carries provenance.</li>
+      <li><strong>when:</strong> any fact/schedule/policy/amenity question, every time (the suite fails fact answers without it).</li>
+      <li><strong>example:</strong> "when is breakfast on the weekend?" → <code>get_hotel_info(topic:"breakfast")</code> → the breakfast block → "8:00 to 10:00" — never from memory.</li></ul>
+    </details>
+    <details><summary><b>create_payment_link</b> — secure pre-filled checkout deep-link</summary>
+      <ul><li><strong>holds/does:</strong> builds the official <code>direct-book.com</code> URL pre-filled with room + dates + occupancy — no reservation is created by us; card data NEVER touches the chat (she refuses spoken card numbers).</li>
+      <li><strong>when:</strong> the guest says "I'll take it" after a grounded offer.</li>
+      <li><strong>example:</strong> "I'll take the Comfort Plus without breakfast" → link returned → payment row renders with Pay ↗ → she says the link is on screen.</li></ul>
+    </details>
+    <details><summary><b>escalate_to_staff</b> — hand the guest to humans (present-contact mode)</summary>
+      <ul><li><strong>holds/does:</strong> the hotel's phone (+49 6501 6037987, landline, ~7:00–20:00) + email; returns the contact card (tel/mailto buttons) with the recommended channel by urgency; logs every escalation to <code>leads/escalations.jsonl</code>.</li>
+      <li><strong>when:</strong> complaints/refunds, group deals, anything unresolvable, or any failed live lookup.</li>
+      <li><strong>example:</strong> "letzte Woche war eine Katastrophe, ich will eine Erstattung" → contact card renders, she points to email for written matters.</li></ul>
+    </details>
+    <details><summary><b>check_promotions</b> — direct-booking perks (scraped, real)</summary>
+      <ul><li><strong>holds:</strong> the site's published direct-booking perks (e.g. free sauna) — no invented discount codes.</li>
+      <li><strong>when:</strong> "any deals/offers?" — grounded perks or honestly nothing.</li>
+      <li><strong>example:</strong> "any specials?" → the perks list → she names them, nothing more.</li></ul>
+    </details>
+    <details><summary><b>get_local_recommendations</b> — attractions &amp; day trips (scraped)</summary>
+      <ul><li><strong>holds:</strong> the area sheet — Mosel–Saar cycle route, Trier (~10 km), Saarburg, Roscheider Hof, wineries — interest-filterable.</li>
+      <li><strong>when:</strong> "what can we do here?" — she filters by the guest's stated interest.</li>
+      <li><strong>example:</strong> "wir fahren gerne Fahrrad" → cycling-filtered list → the Mosel–Saar route answer in §11 #10.</li></ul>
+    </details>
     <div class="rules">the <strong>store-and-notify</strong> variant (<code>capture_lead_and_notify_staff.js</code> — seven.io SMS + Brevo email, fully written) is kept <strong>dormant and unregistered</strong>; if active staff alerts are wanted later: add the keys to <code>.env</code> and re-register it in <code>mcp/registry.js</code>. note: the site's listed phone is a <strong>landline</strong> — an active SMS alert would need a staff <strong>mobile</strong> number.</div>
   </section>
 
