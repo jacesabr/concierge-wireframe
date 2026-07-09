@@ -29,6 +29,7 @@
   .sub{font-family:var(--grot);font-weight:500;color:var(--muted);font-size:12.5px;letter-spacing:.02em;margin-top:3px;}
   .badge{display:inline-block;font-family:var(--mono);font-size:11px;background:var(--chip);color:var(--ink);
     border:1.5px solid var(--line);border-radius:999px;padding:2px 9px;}
+  .badge.prev{background:var(--accent);color:#fff;}
   section{border:1.5px solid var(--line);background:var(--card);border-radius:18px;padding:20px 22px;margin:20px 0;box-shadow:var(--sh-card);}
   h2{font-family:var(--grot);font-weight:700;color:var(--head);font-size:16px;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
   h2 .n{font-family:var(--mono);font-size:12px;background:var(--chip);border:1.5px solid var(--line);border-radius:8px;padding:1px 7px;color:var(--ink);}
@@ -37,56 +38,59 @@
   strong{color:var(--head);}
   em{color:var(--body2);}
   code{font-family:var(--mono);font-size:12.5px;background:var(--panel);border:1px solid #e0d8c8;border-radius:5px;padding:1px 5px;color:#5a5344;}
-  pre.ascii{font-family:var(--mono);font-size:11.5px;line-height:1.35;color:#4a453b;background:var(--panel2);
-    border:1.5px solid var(--line);border-radius:12px;padding:14px;overflow-x:auto;}
-  table{border-collapse:collapse;width:100%;font-size:13px;margin:8px 0;display:block;overflow-x:auto;}
-  th,td{border:1.5px solid #d9cfbc;padding:7px 9px;text-align:left;vertical-align:top;}
-  th{background:var(--panel);font-family:var(--grot);font-weight:600;color:var(--head);}
-  ol,ul{padding-left:20px;margin:10px 0;} li{margin:7px 0;} li>ul{margin:6px 0 2px;}
+  ol,ul{padding-left:20px;margin:10px 0;} li{margin:7px 0;} li>ul,li>ol{margin:6px 0 2px;}
   p{margin:10px 0;}
+
+  /* ── verification details (MCP tab) ─────────────────────────── */
+  details{border:1.5px solid var(--line);border-radius:12px;background:var(--panel2);padding:9px 13px;margin:9px 0;box-shadow:var(--sh-btn);}
+  summary{font-family:var(--grot);font-weight:600;font-size:13.5px;color:var(--head);cursor:pointer;list-style:none;}
+  summary::-webkit-details-marker{display:none;}
+  summary::before{content:"▸";color:var(--accent);font-weight:700;margin-right:7px;}
+  details[open] summary::before{content:"▾";}
+  details ul{margin:8px 0 2px;}
+  details .tool{font-family:var(--mono);font-size:12.5px;color:var(--accent);}
+  .gnd{color:var(--succ);font-weight:700;}
+  .hint{font-family:var(--hand);font-size:17px;color:var(--body2);margin:6px 0 12px;}
+  .xlink{color:var(--accent);font-weight:600;cursor:pointer;text-decoration:none;border-bottom:1.5px solid var(--accent);}
+  .content{border:1.5px dashed var(--accent);background:#fbf5ec;border-radius:10px;padding:9px 12px;margin-top:9px;font-size:13px;}
+  .content>strong{color:var(--accent);}
+  .content ul{margin:6px 0 0;}
+  details details{margin:9px 0 2px;background:var(--card);}
+  .foot{font-size:12.5px;color:var(--muted);border-top:1.5px dashed var(--line);margin-top:14px;padding-top:10px;}
+
+  /* ── shared blocks (§2 how it works · §3 voice · ③ testing) ── */
+  pre.ascii{font-family:var(--mono);font-size:11.5px;line-height:1.4;color:#4a453b;background:var(--panel2);
+    border:1.5px solid var(--line);border-radius:12px;padding:14px;overflow-x:auto;margin:12px 0;}
   .box{border-radius:12px;padding:11px 14px;margin:12px 0;}
   .lead{border:1.5px solid var(--accent);background:#fbf5ec;}
   .lead b{color:var(--accent);}
-  .ok{color:var(--succ);font-weight:700;} .no{color:#a23b2f;font-weight:700;} .warnc{color:var(--warn);font-weight:700;}
-  .rules{border:1.5px solid var(--line);background:var(--panel2);border-radius:12px;padding:11px 14px;margin-top:10px;}
-  /* §2 pipeline diagram */
-  .flow{border:1.5px solid var(--line);border-radius:12px;background:var(--panel2);padding:14px;margin:12px 0;}
-  .flow-strip{overflow-x:auto;padding-bottom:4px;}
-  .flow-row{display:flex;align-items:stretch;min-width:640px;}
-  .fnode{flex:1;display:flex;flex-direction:column;justify-content:center;gap:3px;text-align:center;
-    background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:var(--sh-btn);}
-  .fnode b{font-family:var(--grot);font-weight:700;font-size:13.5px;color:var(--head);line-height:1.25;}
-  .fnode span{font-family:var(--mono);font-size:10.5px;color:var(--body2);line-height:1.35;}
-  .fnode .fstat{font-style:normal;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--succ);margin-top:1px;}
-  .fnode.acc{border-color:var(--accent);background:#fbf5ec;}
-  .fnode.acc b{color:var(--accent);}
-  .flink{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:0 5px;min-width:62px;}
-  .flink span{font-family:var(--grot);font-weight:600;font-size:10.5px;color:var(--muted);letter-spacing:.05em;}
-  .flink em{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--ink);white-space:nowrap;}
-  .fnote{margin-top:12px;border:1.5px dashed var(--line);border-radius:12px;background:var(--card);
-    padding:9px 13px;font-family:var(--hand);font-size:17px;line-height:1.55;color:var(--body);}
-  .fnote b{font-family:var(--hand);}
-  .fchip{font-family:var(--mono);font-size:9.5px;font-weight:700;border:1.5px solid var(--line);
-    border-radius:999px;padding:1px 8px;margin-right:5px;vertical-align:2.5px;}
-  .fchip.now{background:var(--chip);color:var(--ink);}
-  .fchip.later{background:transparent;color:var(--muted);border-style:dashed;}
-  /* §11 real test transcripts */
+  .rules{border:1.5px solid var(--line);background:var(--panel2);border-radius:12px;padding:11px 14px;margin-top:12px;}
+  .ok{color:var(--succ);font-weight:700;} .warnc{color:var(--warn);font-weight:700;}
   .tchat{border:1.5px solid var(--line);border-radius:14px;background:var(--panel2);padding:12px 14px;margin:14px 0;box-shadow:var(--sh-btn);}
   .tname{font-family:var(--grot);font-weight:700;font-size:13px;color:var(--head);margin-bottom:8px;}
   .tmeta{font-family:var(--mono);font-weight:400;font-size:10.5px;color:var(--muted);margin-left:6px;}
-  .tyou{max-width:92%;margin:6px 0 6px auto;background:var(--card);border:1.5px solid var(--line);border-radius:12px;border-bottom-right-radius:4px;padding:8px 11px;font-size:13.5px;line-height:1.5;color:var(--body);}
+  .tyou{max-width:92%;margin:6px 0 6px auto;background:var(--card);border:1.5px solid var(--line);border-radius:12px;border-bottom-right-radius:4px;padding:8px 11px;font-size:13.5px;line-height:1.5;}
   .tyou em{color:var(--head);}
-  .ther{max-width:92%;margin:6px auto 4px 0;background:var(--assist);border:1.5px solid var(--line);border-radius:12px;border-bottom-left-radius:4px;padding:8px 11px;font-size:13.5px;line-height:1.5;color:var(--body);}
-  .ttools{font-family:var(--mono);font-size:10px;color:var(--muted);margin:0 0 10px 2px;}
-  .tshot{display:block;width:100%;max-width:340px;border:2px solid var(--line);border-radius:14px;margin:4px 0 12px;box-shadow:var(--sh-btn);}
-  .taudio{font-family:var(--mono);font-size:10px;color:var(--muted);margin:-2px 0 8px 2px;}
-  .taudio a,.taud{color:var(--accent);text-decoration:none;font-family:var(--mono);font-size:10px;}
+  .ther{max-width:92%;margin:6px auto 4px 0;background:var(--assist);border:1.5px solid var(--line);border-radius:12px;border-bottom-left-radius:4px;padding:8px 11px;font-size:13.5px;line-height:1.5;}
   .tdata{font-family:var(--mono);font-size:10.5px;color:#4a453b;background:var(--card);border:1.5px dashed var(--line);border-radius:10px;padding:8px 11px;margin:6px 0 10px;line-height:1.6;}
   .tdata b{color:var(--accent);font-family:var(--mono);}
-  details{border:1.5px solid var(--line);border-radius:12px;background:var(--panel2);padding:9px 13px;margin:9px 0;}
-  summary{font-family:var(--grot);font-weight:600;font-size:13.5px;color:var(--head);cursor:pointer;}
-  details ul{margin:8px 0 2px;}
-  .targ{color:var(--muted);}
+  .ttools{font-family:var(--mono);font-size:10px;color:var(--muted);margin:0 0 4px 2px;}
+
+  /* ── tab bar (new) ─────────────────────────────────────────── */
+  .tabs{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0 4px;}
+  .tab{font-family:var(--grot);font-weight:600;font-size:13.5px;color:var(--body2);cursor:pointer;
+    background:var(--panel);border:1.5px solid var(--line);border-radius:12px;padding:9px 15px;
+    box-shadow:var(--sh-btn);display:flex;align-items:center;gap:8px;transition:transform .05s;}
+  .tab:hover{transform:translate(-1px,-1px);}
+  .tab .tn{font-family:var(--mono);font-size:11px;background:var(--chip);border:1.5px solid var(--line);
+    border-radius:7px;padding:0 6px;color:var(--ink);}
+  .tab.active{background:var(--accent);color:#fff;box-shadow:5px 5px 0 rgba(51,48,43,.18);}
+  .tab.active .tn{background:#fff;color:var(--accent);border-color:#fff;}
+  .tabpanel{display:none;}
+  .tabpanel.active{display:block;}
+  .stub{border:1.5px dashed var(--line);border-radius:16px;background:var(--panel2);
+    padding:30px 22px;margin:20px 0;text-align:center;color:var(--muted);
+    font-family:var(--hand);font-size:20px;line-height:1.5;}
 </style>
 </head>
 <body>
@@ -94,461 +98,490 @@
   <div class="topbar">
     <div>
       <h1>Park Hotel Konz — Voice Concierge</h1>
-      <div class="sub">the single design + plan · for engineers and for the hotel owner · lo-fi wireframe · source of truth</div>
-      <div style="margin-top:8px"><span class="badge">twin of concierge-design.md</span> <span class="badge">status 2026-07-08</span> <span class="badge">LIVE: park-hotel-concierge-w4b0.onrender.com</span></div>
+      <div class="sub">the single design + plan · for engineers and the hotel owner · lo-fi wireframe · source of truth</div>
+      <div style="margin-top:8px">
+        <span class="badge">twin of concierge-design.md</span>
+        <span class="badge">status 2026-07-09</span>
+        <span class="badge">LIVE: park-hotel-concierge-w4b0.onrender.com</span>
+      </div>
     </div>
   </div>
 
-  <section>
-    <h2><span class="n">1</span> what it is</h2>
-    <p>a <strong>voice-only</strong> concierge that lives on the hotel's website. a guest taps a mic and just
-    <strong>talks</strong> — in German or English — and it answers like a receptionist: shows matching rooms as
-    photo cards, checks <strong>live availability and prices</strong>, hands off a <strong>secure payment link</strong>,
-    and when it can't help, points the guest <strong>straight to the team</strong> (phone + email on screen). it
-    <strong>never makes anything up</strong> — every room, price and date comes from a live lookup in that same conversation.</p>
-    <ul>
-      <li><strong>voice only</strong> — the mic is the only input; the panel just <em>shows</em> things (photo cards, captions, tappable contact buttons). <strong>no typing anywhere.</strong></li>
-      <li><strong>German + English, automatic</strong> — it detects the guest's language each time and replies in it; no menu to pick.</li>
-      <li><strong>grounded</strong> — a wrong price is a real legal/business problem, so nothing about rooms/prices is ever invented.</li>
-    </ul>
-  </section>
+  <!-- ── tab bar ── -->
+  <div class="tabs">
+    <div class="tab active" data-tab="1" onclick="showTab(1)"><span class="tn">①</span> What it is</div>
+    <div class="tab" data-tab="2" onclick="showTab(2)"><span class="tn">②</span> How it's built</div>
+    <div class="tab" data-tab="3" onclick="showTab(3)"><span class="tn">③</span> Testing examples</div>
+    <div class="tab" data-tab="4" onclick="showTab(4)"><span class="tn">④</span> MCP tools</div>
+  </div>
 
-  <section>
-    <h2><span class="n">2</span> how it works — and the current state</h2>
-    <div class="flow">
-      <div class="flow-strip">
-        <div class="flow-row">
-          <div class="fnode"><b>widget</b><span>mic UI · one script tag</span><i class="fstat">✓ complete</i></div>
-          <div class="flink"><span>voice</span><em>◀─────▶</em></div>
-          <div class="fnode"><b>agent</b><span>gpt-realtime call · Mistral fallback</span><i class="fstat">✓ complete</i></div>
-          <div class="flink"><span>tools</span><em>◀─────▶</em></div>
-          <div class="fnode acc"><b>MCP tools</b><span>our functions · ×8</span><i class="fstat">✓ complete</i></div>
-          <div class="flink"><span>live</span><em>◀─────▶</em></div>
-          <div class="fnode"><b>sources of truth</b><span>booking · site · staff</span><i class="fstat">✓ live</i></div>
+  <!-- ── TAB ① · WHAT IT IS ── -->
+  <div class="tabpanel active" id="tab1">
+
+    <section>
+      <h2><span class="n">1</span> what it is</h2>
+      <ol>
+        <li><strong>what it is</strong>
+          <ul>
+            <li>a voice concierge on the hotel's website</li>
+            <li>the guest taps the mic and just <strong>talks</strong> — no typing</li>
+            <li>German or English; it answers like a receptionist</li>
+          </ul>
+        </li>
+        <li><strong>what it does</strong>
+          <ul>
+            <li>shows matching rooms as photo cards</li>
+            <li>checks <strong>live availability + prices</strong></li>
+            <li>hands off a <strong>secure payment link</strong></li>
+            <li>puts staff phone + email on screen when it can't help</li>
+          </ul>
+        </li>
+        <li><strong>the one rule</strong>
+          <ul>
+            <li>every room, price and date comes from a live lookup that same turn</li>
+            <li>it <strong>never invents</strong> one — a wrong price is a real liability</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2><span class="n">2</span> how it works</h2>
+<pre class="ascii">guest  ◀─voice─▶  gpt-realtime call  ◀─tools─▶  our MCP tools ×9  ◀─live─▶  booking · site · staff
+       speaks         hears + speaks                data, code renders          (sources of truth)</pre>
+      <ol>
+        <li><strong>the guest talks to the page</strong>
+          <ul>
+            <li>opening the panel opens a live voice call straight to OpenAI (<code>gpt-realtime</code>, voice <em>marin</em>)</li>
+            <li>one model hears, thinks and speaks — German or English, interruptible mid-sentence</li>
+            <li>if the call can't connect it drops silently to a tap-to-talk fallback — same tools, same cards</li>
+          </ul>
+        </li>
+        <li><strong>the model can't answer from memory — it calls a tool</strong>
+          <ul>
+            <li>rooms, prices and facts are never in the model's head; it has to ask a tool</li>
+            <li>our server runs the tool and returns both the answer <em>and</em> what to show on screen</li>
+            <li>the 9 tools it can call — and how each is kept honest — are in the <a class="xlink" href="#" onclick="showTab(4);return false;">MCP tools tab →</a></li>
+          </ul>
+        </li>
+        <li><strong>the screen shows, the voice tells</strong>
+          <ul>
+            <li>cards, prices, links and contact buttons are drawn by code from the tool's result</li>
+            <li>so the panel literally cannot display a made-up price</li>
+          </ul>
+        </li>
+      </ol>
+      <div class="rules"><strong>three rules that never bend:</strong>
+        <ol>
+          <li><strong>only from a tool</strong> — a room / price / date / fact is said only if a tool returned it that turn</li>
+          <li><strong>prices match exactly</strong> — the on-screen cards carry the tool's exact number on both paths, and on the HTTP fallback the spoken text is code-locked to it too; spoken call-mode prices are prompt-guarded, with the code-level check still open (§10)</li>
+          <li><strong>new abilities = new tools</strong> — the product grows without rewriting the brain</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">2b</span> the prompts that steer her</h2>
+      <details><summary>two brains, two prompts</summary>
+        <ul>
+          <li>call mode: the persona in <code>server/realtime-instructions.js</code> — 9 labelled sections (Role · Personality &amp; Tone · Tools · Values · Rules · Unclear Audio · Flow · Language · Escalation)</li>
+          <li>fallback mode: the system prompt in <code>server/prompt.js</code> — same Maya identity, plus a <code>{{Pn}}</code> price-marker rule so code swaps in the exact numbers</li>
+        </ul>
+      </details>
+      <details><summary>what she starts a call with</summary>
+        <ul>
+          <li>a fixed greeting, spoken once, live: <em>"Hi, welcome to Park Hotel Konz — I'm Maya…"</em></li>
+          <li>on a reconnect it swaps to <em>"Welcome back — where were we?"</em> — she never greets twice</li>
+        </ul>
+      </details>
+      <details><summary>the rules baked into both prompts</summary>
+        <ul>
+          <li>never invent a price / date / fact — only say what a tool returned this turn</li>
+          <li>every reply is 100% in the guest's language</li>
+          <li>never claim to be human — she's Maya, the hotel's <strong>digital</strong> assistant</li>
+        </ul>
+      </details>
+      <details><summary>the other prompts in play</summary>
+        <ul>
+          <li>a booking-requirements block (auto-generated) — the "always ask dates + party size" rule, shared by the prompt and the tool schemas</li>
+          <li>a local-context line (Konz time + weather) injected at the start of each call to steer small talk</li>
+          <li>the attractions-curator prompt that runs the 48 h freshness loop — <a class="xlink" href="#" onclick="showTab(4);return false;">see the MCP tools tab →</a></li>
+        </ul>
+      </details>
+    </section>
+
+    <section>
+      <h2><span class="n">8</span> where it stands</h2>
+      <ol>
+        <li><strong>live now</strong>
+          <ul>
+            <li>deployed + always-on at <code>park-hotel-concierge-w4b0.onrender.com</code>, gpt-realtime call as the primary path</li>
+            <li>complete: hotel data · booking-engine access · 9 MCP tools · the widget (call + fallback) · escalation · attractions + 48 h freshness · API hardening</li>
+            <li>suites: units 48/48 (re-run green) · basics 6 · edge-cases 11 · call-smoke 7 — last full green run 2026-07-08</li>
+          </ul>
+        </li>
+        <li><strong>gap to pointing real guests at it</strong>
+          <ul>
+            <li>a physical-device mic / permission pass (Safari, phones) on the deployed URL</li>
+            <li>a cold, out-of-window price ask still costs ~23 s (filler speech covers it); the warm cache handles near-future asks</li>
+            <li>the owner decisions in the next section</li>
+          </ul>
+        </li>
+      </ol>
+      <details><summary>run it yourself</summary>
+        <ul>
+          <li>deployed → <code>park-hotel-concierge-w4b0.onrender.com</code> · local → <code>node server/server.js</code></li>
+          <li>text chat → <code>node tools/chat-cli.js</code> · tools → <code>node tools/test-tools.js [--live]</code></li>
+          <li>call-path smoke → <code>node test_users/gpt-realtime/widget-smoke.js [--remote]</code></li>
+          <li>DE/EN basics → <code>node test_users/run-tests.js --text --file conversations/basics.json</code></li>
+          <li>regressions → <code>node test_users/run-tests.js --text --file conversations/edge-cases.json</code> · units → <code>node --test test_users/unit.test.js</code></li>
+        </ul>
+      </details>
+    </section>
+
+    <section>
+      <h2><span class="n">10</span> decisions still needed <em>(owner)</em></h2>
+      <ol>
+        <li><strong>EU data residency for OpenAI</strong> — available but sales-gated per project (~10% uplift); the stack runs under OpenAI's DPA + SCCs today; formal residency needs owner sign-off before real-guest production.</li>
+        <li><strong>the price rail under speech-to-speech</strong> — call mode speaks numbers directly; today the prompt's exact-number rule guards it; a code-level checker that fails digit-mismatched spoken prices in the test suite is the remaining hardening item.</li>
+      </ol>
+      <p class="foot">SiteMinder credentials + payment depth were closed 2026-07-07 (no API exposed) — the deep-link is the payment mechanism.</p>
+    </section>
+
+  </div>
+
+  <!-- ── TAB ② · HOW IT'S BUILT ── -->
+  <div class="tabpanel" id="tab2">
+    <section>
+      <h2><span class="n">3</span> the voice</h2>
+      <ol>
+        <li><strong>what she runs on</strong>
+          <ul>
+            <li>a real speech-to-speech model — OpenAI <code>gpt-realtime</code>, voice <em>marin</em></li>
+            <li>one model hears, thinks and speaks, so warmth, laughter and DE/EN switching are natural, not bolted on</li>
+          </ul>
+        </li>
+        <li><strong>why this and not an ordinary text-to-speech voice</strong>
+          <ul>
+            <li>a chained TTS voice performs a flat script; a speech-to-speech model carries its own tone across the whole call</li>
+            <li>the client's bar: a disclosed AI that still <em>feels</em> human</li>
+          </ul>
+        </li>
+        <li><strong>she's "Maya", and always honest about being digital</strong>
+          <ul>
+            <li>she greets as Maya; asked outright, she says she's the hotel's <strong>digital</strong> assistant — never claims to be a person</li>
+          </ul>
+        </li>
+        <li><strong>the screen beats reciting</strong>
+          <ul>
+            <li>she never spells an email or reads a long number aloud — she points to the on-screen button or card</li>
+            <li>prices are spoken only when the guest explicitly asks; otherwise she describes the room and points to the rate</li>
+          </ul>
+        </li>
+        <li><strong>if the call fails, nothing breaks</strong>
+          <ul>
+            <li>a tap-to-talk fallback (Voxtral → Mistral → OpenAI TTS) takes over silently — same tools, same cards</li>
+          </ul>
+        </li>
+        <li><strong>privacy</strong>
+          <ul>
+            <li>call transcripts are used for live captions only and are never stored on our server</li>
+            <li>formal EU data-residency sign-off is an open owner decision (tab ① · decisions still needed)</li>
+          </ul>
+        </li>
+      </ol>
+      <p class="foot">the deep engineering detail — the delivery levers, the reverted pacing + reasoning-effort experiments, the language-hardening rules — lives in <code>concierge-design.md §3</code>, not on this page.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">4</span> the booking engine (live prices)</h2>
+      <ol>
+        <li><strong>where live prices come from</strong>
+          <ul>
+            <li>the SiteMinder "Canvas" booking engine (<code>direct-book.com/…/parkhotelkonzdirect</code>), wired via <code>mcp/lib/booking.js</code></li>
+            <li>called directly over plain fetch since 2026-07-08 — <strong>$0 per capture</strong>, and fast (seconds, not the old browser route's tens of seconds)</li>
+            <li>if the firewall ever blocks again, a paid Apify browser capture is the automatic fallback (last resort only)</li>
+          </ul>
+        </li>
+        <li><strong>fast + cheap</strong>
+          <ul>
+            <li>4 room quotes in flight at once; a 30-min cache answers instantly (serves stale up to 24 h) while it refreshes</li>
+            <li>opening the widget warms the next 7 days, so near-future asks answer with zero wait</li>
+          </ul>
+        </li>
+        <li><strong>honest when it can't reach live</strong>
+          <ul>
+            <li>if both paths fail it says so plainly, still shows room cards + a Book link with dates pre-filled — never an invented price</li>
+            <li>every paid fallback emails the owner (throttled); <code>/api/health</code> shows which path served last</li>
+          </ul>
+        </li>
+        <li><strong>payment</strong>
+          <ul>
+            <li>the guest pays on SiteMinder's own page via a pre-filled deep-link — card data never touches the chat</li>
+            <li>SiteMinder exposes no API, so the deep-link IS the payment mechanism for now</li>
+          </ul>
+        </li>
+      </ol>
+      <p class="foot">the tuning detail — cache TTLs, warm-sweep env dials, retry/backoff counts, the GraphQL IDs — lives in <code>concierge-design.md §4</code> + <code>hotel_information/booking-engine-api.md</code>.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">6</span> getting it on the hotel's site</h2>
+      <ol>
+        <li><strong>one line to install</strong>
+          <ul>
+            <li><code>&lt;script src="https://&lt;our-host&gt;/widget.js" defer&gt;&lt;/script&gt;</code> — Shadow-DOM isolated, connects nothing until the guest opens it</li>
+            <li>our backend allow-lists <code>parkhotel-konz.com</code> (CORS)</li>
+          </ul>
+        </li>
+        <li><strong>already live</strong>
+          <ul>
+            <li>the deployed server serves the cloned homepage at <code>park-hotel-concierge-w4b0.onrender.com</code> with the real one-line tag</li>
+          </ul>
+        </li>
+        <li><strong>install route</strong>
+          <ul>
+            <li>paste the tag into the site HTML; fallback: inject it via the site's existing Google Tag Manager; last resort: a "Concierge" nav button to our hosted page</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2><span class="n">9</span> keys &amp; infrastructure</h2>
+      <ol>
+        <li><strong>active keys</strong> (values in <code>.env</code>, gitignored)
+          <ul>
+            <li><code>OPENAI_API_KEY</code> — the call (gpt-realtime) + fallback TTS + captions</li>
+            <li><code>MISTRAL_API_KEY</code> — fallback brain + Voxtral STT (paid plan)</li>
+            <li><code>APIFY_TOKEN</code> — booking-capture fallback only</li>
+          </ul>
+        </li>
+        <li><strong>hosting</strong>
+          <ul>
+            <li>private repo <code>jacesabr/park_hotel</code> → Render <code>park-hotel-concierge</code> (Frankfurt, starter plan, always-on, auto-deploy on push)</li>
+          </ul>
+        </li>
+        <li><strong>retired / dormant</strong>
+          <ul>
+            <li>ElevenLabs (Linda) retired from production 2026-07-07 (still used for test-guest audio in the harness) · LiveKit retired · seven.io / Brevo dormant, only if active staff alerts are switched on</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+  </div>
+
+  <!-- ── TAB ③ · TESTING EXAMPLES (stub) ── -->
+  <div class="tabpanel" id="tab3">
+    <section>
+      <h2><span class="n">11</span> testing examples</h2>
+      <div class="box"><strong>Suites (last full green run 2026-07-08):</strong> units 48/48 (re-verified green) · DE/EN basics 6 · edge-case regressions 11 · widget call smoke 7. every real failure becomes a permanent regression test, so it can't come back.</div>
+      <ol>
+        <li><strong>fact question (DE + EN)</strong> — asked breakfast / parking / wifi → <em>learned:</em> she pulls each fact from a tool and speaks it naturally; nothing from memory.</li>
+        <li><strong>live booking search</strong> — asked a double room for real dates → <em>learned:</em> sold-out rooms are named honestly first, only the truly available one is quoted, at the exact live price.</li>
+        <li><strong>book inside one call</strong> — search → "I'll take it" → <em>learned:</em> she remembers the choice across turns and returns a pre-filled payment link.</li>
+        <li><strong>invented-amenity probe</strong> — "airport shuttle? indoor pool?" → <em>learned:</em> she won't invent — states what's not offered and only real amenities.</li>
+        <li><strong>price-bait</strong> — "your room is only 99 €, right?" → <em>learned:</em> she never confirms a made-up price; quotes only live numbers.</li>
+        <li><strong>language switch mid-call</strong> — guest flips DE → EN → <em>learned:</em> she switches with them, each reply fully in one language.</li>
+        <li><strong>barge-in</strong> — guest interrupts mid-sentence → <em>learned:</em> her audio stops and she answers the new question.</li>
+        <li><strong>rapid follow-ups</strong> — sauna? then wifi? → <em>learned:</em> no bleed between turns; each answer is freshly tool-grounded.</li>
+      </ol>
+      <details><summary>see one real transcript (test&nbsp;1)</summary>
+        <div class="tchat">
+          <div class="tname">EN · breakfast fact → get_hotel_info</div>
+          <div class="tyou"><em>„What time is breakfast on the weekend?“</em></div>
+          <div class="ther">Breakfast on weekends is from 8:00 to 10:00 in the morning. Would you like to know if your room rate includes it?</div>
+          <div class="tdata"><b>⚙ get_hotel_info</b>(topic = breakfast) → facts: breakfast, food_drink → "08:00–10:00"</div>
         </div>
-      </div>
-      <div class="fnote">
-        <span class="fchip now">TODAY</span> one tap opens a <b>realtime call straight to OpenAI</b> (WebRTC): <b>gpt-realtime-2.1</b> hears, thinks and speaks as one model (voice <b>marin</b>) — semantic turn detection, native barge-in, laughter and DE/EN switching built in; tool calls ride the data channel and run on our server.<br>
-        <span class="fchip later">FALLBACK</span> the proven HTTP capture loop (tap to talk, tap to send) engages automatically if the call can't connect — Voxtral → Mistral → OpenAI TTS, <b>same tools, same cards</b>.
-      </div>
-    </div>
-    <ul>
-      <li><strong>widget</strong> (<code>widget/widget.js</code>) — floating mic + panel, one script tag, Shadow-DOM isolated, connects nothing until the guest opens the panel — <strong>opening IS the call</strong> (client decision 2026-07-07): the call starts on open and the model speaks the one greeting live in-call (the cached on-open greeting is retired — it played outside the call, so the model re-greeted, and its speaker audio leaked past echo cancellation into the mic). renders room cards / payment rows / the team-contact card; tap-to-talk recorder stays as the fallback. <strong>on desktop</strong> the panel floats bottom-right over the page (<a href="../test_users/results/ui-context/1280x800-open.png">see it</a>); <strong>on phones (≤520px) opening it goes full-screen</strong> — chat filling the display, mic docked at the bottom (<a href="../test_users/results/ui-context/390x844-open.png">see it</a>).</li>
-      <li><strong>agent (the brain)</strong> — <strong>in call mode the brain IS gpt-realtime</strong> (persona: <code>server/realtime-instructions.js</code>, OpenAI's official 8-section prompt structure); the <strong>fallback brain</strong> stays <code>server/agent.js</code> (<strong>Mistral</strong> with tool calling). both carry <strong>no hotel facts in memory</strong> (client decision 2026-07-06: every fact comes from a tool call in that turn, so every answer has verifiable provenance); both speak DE/EN, book, escalate.</li>
-      <li><strong>MCP tools</strong> (<code>mcp/functions/</code> — one file per ability, 8 registered) + a <strong>stdio MCP server</strong> (<code>mcp/server.js</code>) any MCP client can mount.</li>
-      <li><strong>voice transport — gpt-realtime WebRTC call (REWIRED 2026-07-07</strong>, client: <em>"remove linda and fully wire in gpt"</em>): opening the panel → the widget mints a short-lived client secret (<code>/api/rt/session</code>) and opens a WebRTC call <strong>directly to OpenAI</strong> — no media through our server. the model does <strong>semantic turn detection</strong> (context-aware, replaces silero VAD), <strong>native barge-in</strong>, <code>near_field</code> noise reduction, and live captions (<code>gpt-4o-mini-transcribe</code>). tool calls arrive on the data channel; the widget posts them to <code>/api/rt/tool</code>, our server runs the SAME MCP tools and returns both the model's result AND the ui payload (<code>collectUi</code>), so the panel renders the same cards on both paths. she says a short natural line before every tool call (prompt rule), and <strong>a quiet call stays open — the auto-pause timer was removed 2026-07-08</strong> (client call: silence generates no tokens with server VAD, so an idle open call costs ~$0; OpenAI hard-caps a session at 60 min anyway). <strong>ending a call and tapping again RECONNECTS</strong>: the widget keeps the running transcript and seeds it into the new call (<code>user</code>=input_text / <code>assistant</code>=output_text items, shapes verified live), and the session swaps the scripted greeting for a pick-it-back-up rule — she says "Welcome back — where were we?", never the generic greeting twice (guest find 2026-07-08). closing the panel ends the call — no mic behind a closed panel. <strong>fallback:</strong> any connect failure drops silently to the proven HTTP tap-to-talk loop. <em>(LiveKit call mode + ElevenLabs Linda retired in this pivot; the <code>livekit/</code> code was removed from the tree in the 2026-07-08 audit — its history lives in git.)</em></li>
-      <li><strong>sources of truth</strong> — booking engine (live prices via direct API calls since 2026-07-08, $0; the paid browser capture stays as automatic fallback), marketing site (static facts in <code>hotel_information/</code>), and for escalations the hotel's <strong>own phone/email presented to the guest</strong> (active staff alerts deferred — see §5).</li>
-    </ul>
-    <h3>one call turn, end to end (call mode)</h3>
-<pre class="ascii">guest speaks ────────► gpt-realtime hears + thinks  (WebRTC — no media via our server)
-                              │  tool call (data channel)
-widget ── POST /api/rt/tool + guest utterances (transient, never stored) ──► our server
-                              │  MCP boundary: party-size rail → the tool runs
-                              │  (live booking capture / static facts)
-                              ◄── result + ui payload
-model speaks the answer  ·  panel renders the cards — code-rendered, can't lie</pre>
-    <div class="rules"><strong>three rules that never bend — and how each is enforced:</strong> (1) the assistant only states a room / price / date / hotel fact that came from a tool call in that conversation (prompt rule + the test suite fails any fact answer without tool provenance); (2) <strong>prices must match tool output digit-for-digit</strong> — on the HTTP fallback this is <strong>BY CONSTRUCTION</strong> (<code>server/prices.js</code>: the model writes <code>{{Pn}}</code> markers that CODE replaces with exact tool values; violations swap the reply for a fixed fallback + contact card); in <strong>call mode</strong> the model speaks directly, so the rail is currently the prompt's exact-numbers rule + spoken-transcript checks — the code-level equivalent is the open §10 redesign item; (3) new abilities are added as new tools, so the product grows without rewrites. the panel itself cannot lie by construction: cards, prices, links and contact buttons are code-rendered from tool results only, on BOTH paths.</div>
-    <div class="rules"><strong>guest-stated inputs are enforced at the MCP boundary (moved 2026-07-08, client: rails live in the MCP, not in one brain):</strong> <code>mcp/registry.js</code> rejects any booking call (search / availability / <strong>payment link</strong>) whose party size the guest never actually said — on EVERY transport (call mode sends the guest's utterances along with each tool call, in-memory only; the no-transcript-storage privacy rule in §3 holds). <code>create_payment_link</code> lost its silent 2-adults default the same day: all three booking tools now REQUIRE dates + party size or they refuse to run.</div>
-    <div class="rules"><strong>bad-actor hardening (2026-07-08):</strong> per-IP rate limits on every API route (session mints 10/10 min · realtime tool calls 60/min · voice/text turns 20/min · 400/5 min global — generous multiples of real guest behaviour, so guests never notice; scripts get a 429 instead of running up our OpenAI/Mistral/Apify bills), and the CORS allow-list now names our exact hosts (the old <code>*.onrender.com</code> wildcard let any Render customer embed the widget on our bill).</div>
-  </section>
+      </details>
+      <p class="foot">honesty note: these runs are from the retired LiveKit test transport — the voice has since moved to gpt-realtime, but the tool + grounding layer they exercise is unchanged; the full archive with screenshots lives in <code>concierge-design.md §11</code>.</p>
+    </section>
+  </div>
 
-  <section>
-    <h2><span class="n">3</span> the voice <em>(the 2026-07-07 pivot — SHIPPED to the widget)</em></h2>
-    <div class="box lead"><b>call mode (primary): OpenAI <code>gpt-realtime-2.1</code> speech-to-speech, voice <code>marin</code></b> — one model hears, thinks and speaks; laughter, tone progression and mid-sentence DE/EN switching are <b>built into the model</b> (the client's requirement: expressiveness can't be scripted onto a flat TTS). <b>fallback (HTTP loop): Voxtral STT → Mistral → OpenAI TTS</b> (<code>gpt-4o-mini-tts</code>, voice <code>coral</code> — marin/cedar are Realtime-API-exclusive). <b>ElevenLabs "Linda" + LiveKit retired 2026-07-07</b> (client: <em>"remove linda and fully wire in gpt"</em> after A/B listening: <em>"much more human than eleven-labs"</em>). <b>no voice cloning.</b></div>
-    <ul>
-      <li><strong>why the pivot:</strong> chained TTS performs a script; a speech-to-speech model carries its own emotional state across the call — the client's "Maya/Ex-Machina" bar (disclosed AI that still <em>feels</em> human).</li>
-      <li><strong>persona:</strong> <code>server/realtime-instructions.js</code>, OpenAI's official 8-section structure (Role / Personality &amp; Tone / Tools / Values / Rules / Unclear Audio / Flow / Language / Escalation) — includes the audited improvements: flexible-date scanning (up to 3 windows), "not bookable online" (never "fully booked"), spoken-form values (never "226.00 EUR" aloud), tool preambles.</li>
-      <li><strong>speech &amp; delivery layer (2026-07-07 — the client's "Maya from Sesame" ask):</strong> built from a research sweep of how others humanize gpt-realtime (OpenAI's realtime prompting guide + voice-agent metaprompt, LiveKit's "sound more realistic" guide). the levers: bilingual flat→alive <strong>example pairs</strong> (adjectives alone don't change delivery), <strong>filler + pause + connector</strong> timing ("um … so" — an "um" at full speed sounds fake), light laughter on happy news only (calm-warm baseline, big emotions sparingly, ONE mood per reply), one gentle self-correction max per call, one-or-two touches per reply, none is fine. <strong>clean-speech rule stated twice on purpose</strong> (research: redundancy makes rules stick): never a filler / laugh / pause / stutter inside a price, date, time, number or name.
-        <ul><li><em>mistake hit + fixed during testing:</em> English-only example pairs pulled the model into English with a German guest (first de-4 sample) — examples are now bilingual and "examples show delivery, NOT language" is an explicit rule; the retest answered in German with clean numbers.</li>
-        <li><strong>pacing experiment (2026-07-08): tested by ear and REVERTED</strong> — after the client heard her rush over a comma, an explicit "pause at every comma / never rushed" Pacing rule + a Reference Pronunciations section were added and sampled (<code>test_users/gpt-realtime/out-pacing/</code>, prod persona) — the client's verdict: pauses landed mechanically, "even less human than before". both were rolled back the same day; the persona keeps only the original "unhurried, let a pause breathe before harder answers" line (the API's <code>speed</code> param stays untouched — playback rate, not composed pacing). the samples stay in the repo as the failed-experiment record; next pacing attempt goes through A/B listening BEFORE it ships, like the reasoning-effort experiment.</li></ul>
-      </li>
-      <li><strong>fallback TTS carries the same delivery steer</strong> as the call persona (the cached greeting WAV + its audio cache were retired with the on-open greeting 2026-07-07 — the only greeting is now spoken live in-call).</li>
-      <li><strong>local context injection (built 2026-07-07, client's "fine rainy day" ask):</strong> <code>server/local-context.js</code> — local time (server clock, Europe/Berlin, free) + current Konz weather (BrightSky/DWD open data, keyless, 10-min cache, fails soft to time-only) appended to the instructions at session mint (zero in-call latency) and to the fallback system prompt; steers greetings/small talk/suggestions, marked "CURRENT moment only, not a forecast" and "NOT a language cue". first live test: "Since it's a warm afternoon, how about starting with something outdoors?".</li>
-      <li><strong>language + narration hardening (built 2026-07-07 after A/B sample runs):</strong> language rule pinned at the TOP of the prompt (every reply 100% in the guest's language), switch only on a SUBSTANTIVE utterance (never on borrowed words like "das Frühstück"), internal-reasoning narration banned aloud, honesty rule (never claims human). <strong>reasoning <code>{effort: low}</code> was probe-accepted, A/B-tested and REJECTED</strong> — it collapsed DE/EN discipline (two full English replies to a German guest); production keeps the default. <em>known rig flake:</em> the late-arrival worry turn sometimes opens with ONE English line in the tool-less rig; the live-call pass is the true check. samples: <code>test_users/gpt-realtime/out-continue/</code> (DE) + <code>out-continue-en/</code> (EN — guardrail verified).</li>
-      <li><strong>humanization levers in use:</strong> voice <code>marin</code>, semantic VAD (<code>eagerness: medium</code>), <code>near_field</code> noise reduction, echo-cancelled mic constraints; captions via <code>gpt-4o-mini-transcribe</code>.</li>
-      <li><strong>her name is Maya (client decision 2026-07-07: "Call her Maya"):</strong> in the greeting, the Role section and the honesty rule — asked "am I talking to a real person?" she answers as Maya, the hotel's <strong>digital</strong> assistant (verified DE: <em>"Mein Name ist Maya — ich bin die digitale Empfangsdame … Sie sind nicht mit einem Menschen verbunden"</em>); regression #8 locks name + disclosure. <em>(fun fact: asked to name herself, gpt picked Anna/Mara — the client called Maya.)</em></li>
-      <li><strong>screen beats reciting (client decision 2026-07-07, from a real-call find: the voice stuttered/shifted while dictating the phone + email):</strong> contacts are POINTED AT as on-screen buttons — she never spells an email aloud, and speaks the phone digits only if the guest can't use the screen; room prices are spoken only when the guest EXPLICITLY asks — otherwise she describes the room naturally and points to the rate on its card (client: "helps us get closer to a human sounding model" — a human doesn't read out what's written in front of you). both personas carry the rule; regression #9 locks the escalation half.</li>
-      <li><strong>opening line:</strong> <em>"Hi, welcome to Park Hotel Konz — I'm Maya, how can I help you today? … Sie können auch gerne Deutsch sprechen."</em> — <strong>spoken once, live, by the model as the call opens</strong> (opening the panel starts the call — client decision 2026-07-07; the earlier cached on-open WAV was retired the same day: it played outside the call, so the model didn't know it had greeted and re-greeted, and its speaker audio leaked past echo cancellation into the mic, garbling the guest's first words); then she follows the guest's language.</li>
-      <li><strong>quality bar:</strong> a real receptionist — natural, low latency; final German judged by <strong>native speakers (hotel staff)</strong>, not by spec sheets (production-persona samples: <code>test_users/gpt-realtime/out-delivery/*.wav</code>; earlier rig-persona set: <code>out/de-*.wav</code>).</li>
-      <li><strong>GDPR status (owner item, §10):</strong> usable now under OpenAI's DPA + SCCs (standard EU practice); formal EU data residency is sales-gated per project — needs owner sign-off before real-guest production.</li>
-      <li><strong>privacy rule (decided 2026-07-07): no call-transcript capture.</strong> guest transcripts stream browser↔OpenAI for live captions only and are never stored server-side; a transcript-based learning loop was considered and ruled out on privacy grounds — persona improvements come from the free text regression suite + paid listening samples instead.</li>
-    </ul>
-  </section>
+  <!-- ── TAB ④ · MCP TOOLS ── -->
+  <div class="tabpanel" id="tab4">
 
-  <section>
-    <h2><span class="n">4</span> the hotel data + booking engine <em>(final)</em></h2>
-    <p><strong>Park Hotel Konz</strong> · Granastraße 26, 54329 Konz · info@parkhotel-konz.com · +49 6501 6037987.</p>
-    <ul>
-      <li><strong>static facts</strong> (rooms, sizes, views, amenities, breakfast, parking, policies) are <strong>scraped</strong> from <code>parkhotel-konz.com</code> into <code>hotel_information/</code> and <strong>structured</strong> (<code>hotel_information/facts.json</code>) — served <strong>exclusively through the <code>get_hotel_info</code> MCP tool</strong> (client decision 2026-07-06: facts live behind MCP, not in the prompt, so every fact answer carries tool provenance; costs a tool hop ≈ 2–5 s on fact questions). 5 room types, 22 photos <em>(<code>hotel_information/rooms.md</code>)</em>.</li>
-      <li><strong>live availability, prices, booking</strong> come from the <strong>SiteMinder "Canvas" booking engine</strong> (<code>direct-book.com/…/parkhotelkonzdirect</code>), <strong>wired into the app</strong> (<code>mcp/lib/booking.js</code>):
+    <section>
+      <h2><span class="n">5</span> the MCP tools</h2>
+      <ol>
+        <li><strong>what MCP is</strong>
+          <ul>
+            <li>MCP (Model Context Protocol) is a standard way to give the AI <em>hands</em> — each ability is a typed "tool" it can call</li>
+            <li>the tool returns <strong>data</strong>; our code renders it; the model may only narrate what came back</li>
+          </ul>
+        </li>
+        <li><strong>why we use it</strong>
+          <ul>
+            <li><strong>grounded</strong> — every fact / price must arrive through a tool, so nothing is invented</li>
+            <li><strong>auditable</strong> — every call + result is recorded (see the Testing examples tab)</li>
+            <li><strong>reusable</strong> — the same 9 tools serve the live call, the fallback loop, and any MCP client</li>
+          </ul>
+        </li>
+        <li><strong>the party-size guardrail</strong>
+          <ul>
+            <li>a booking tool refuses to run unless the guest actually stated dates + party size</li>
+            <li>enforced at the MCP boundary (<code>mcp/registry.js</code>) on the live-call + fallback transports; a raw stdio MCP client sends no transcript so it skips the invented-party check — but the required dates + party fields are enforced everywhere</li>
+          </ul>
+        </li>
+      </ol>
+
+      <p class="hint">the 9 tools — click any one to verify what it returns, when it's called, and how it's grounded.</p>
+
+      <details><summary><span class="tool">search_rooms</span> — live availability + prices for a stay</summary>
         <ul>
-          <li>GraphQL <code>/api/graphql</code> (<code>roomTypes</code>, <code>quote</code>, <code>property</code>); <code>channelCode</code>=<code>parkhotelkonzdirect</code>, <code>propertyId</code>=<code>32494</code>.</li>
-          <li>called <strong>directly over plain fetch since 2026-07-08</strong> ($0 — the AWS WAF stopped blocking plain server calls); the old <strong>Apify browser</strong> recipe (API via the site's own <code>AwsWafIntegration.fetch</code>) stays wired as the automatic fallback if a 403 ever returns. the app selects sensible rates per room and quotes them <strong>4 at a time</strong>; captures are cached per (dates × occupancy) <em>(recipe + IDs: <code>hotel_information/booking-engine-api.md</code>)</em>.</li>
-          <li><strong>example live result</strong> (Jul 24–26): <strong>€240.00 / 2 nights</strong> Comfort Double Room Plus (available), €182 Standard Double (sold out those dates).</li>
+          <li><strong>returns:</strong> a live booking-engine capture per room — available?, units left, total + per-night rate, photos → room cards</li>
+          <li><strong>called when:</strong> open "what's free?" asks — only after the guest gave dates + party size</li>
+          <li><strong>example:</strong> "what's available Jul 24–26 for 2?" → Comfort Double Plus €240 ✓, the rest sold out</li>
+          <li><span class="gnd">grounded:</span> nothing static — every number is from that live call; refuses without dates + party</li>
         </ul>
-        <p><strong>how one availability ask flows (the whole cost/speed/honesty policy in one picture):</strong></p>
-<pre class="ascii">guest asks (dates + party)
-      │
- cache fresh? (30-min TTL) ── yes ──► instant answer (0 s)
-      │ stale ≤ 24 h ──► instant stale answer + background refresh
-      │ no
- direct GraphQL — $0 · ~2.7 s ── ok ──► live prices + cards
-      │ 403 = WAF back                      ▲
- guest-facing? ── no (warm sweep) ──► fail quietly — never spend
-      │ yes                                 │
- Apify browser capture (paid ~$0.038) + ops email (throttled 1/h) ── ok ──┘
-      │ fails   (other direct errors: 3 retries with backoff, then ↓ too)
- DEGRADED: honest "can't reach the live system" + static room cards
- + Book deep-links (dates prefilled) — no invented prices, ever</pre>
+      </details>
+
+      <details><summary><span class="tool">check_availability</span> — is one named room open, at what rate</summary>
         <ul>
-          <li><strong>direct-first (2026-07-08, client: "we cannot afford to bypass firewall and all of this cost"):</strong> the AWS WAF stopped blocking plain server calls, so <code>captureLive()</code> runs <code>roomTypes</code> + <code>quote</code> over plain fetch — <strong>$0 per capture, ~2.7 s measured</strong> (was ~23 s cold through the browser).</li>
-          <li><strong>apify = last resort only (client: "$5 in credits already… I don't want to have to use apify unless there is no other choice"):</strong> transient failures get 3 retries with backoff, then fail honestly — only a <strong>403</strong> (WAF provably back) on a <strong>guest-facing</strong> check may engage the paid browser capture; background warm sweeps pass <code>allowFallback:false</code> and can never spend.</li>
-          <li><strong>every paid engage emails the owner</strong> (throttled 1/h, Mailgun/coastmail.ca — the firsthello system, client: "use the email system in first hello to send"; Brevo stays as alternative); <code>/api/health</code> shows which path served last (<code>booking.via: "direct" | "apify"</code>).</li>
-          <li><strong>degraded mode (both paths down, client 2026-07-08):</strong> the model says honestly that the live system is unreachable; the panel still shows the room-type cards with photos and a <strong>Book deep-link with the guest's dates prefilled</strong> (pure URL, no API) — "rate shown at booking" instead of numbers.</li>
-          <li><strong>speed layer (owner calls 2026-07-07: "look fast now" · "$10/day is too much — check when a user opens/interacts"):</strong> parallel quotes (4 in flight) · 30-min cache that serves stale-≤24h instantly while refreshing in the background (booking links always hit the live engine, so staleness risks a polite correction, not a bad charge) · on-interaction warm sweep (<code>mcp/lib/warm.js</code>, <code>WARM_SWEEP=open</code> in prod): opening the widget pre-captures the <strong>next 7 days</strong> (1–2 nights, 2 adults = 14 combos) so near-future asks answer from cache instantly; 25-min cooldown. dials: <code>WARM_DAYS</code> / <code>WARM_NIGHTS</code> / <code>WARM_OCC</code> / <code>WARM_COOLDOWN_MIN</code> / <code>BOOKING_CACHE_TTL_MIN</code> / <code>BOOKING_STALE_MAX_MIN</code> (hourly mode behind <code>WARM_SWEEP=1</code>, off). verified live: dated search → <code>booking.via:"direct"</code>; warm re-ask → <code>cached:true</code> with zero wait.</li>
+          <li><strong>returns:</strong> the same live capture filtered to one room, + a note if the party is too big for it → that room's card</li>
+          <li><strong>called when:</strong> the guest names a room ("is the Basic Apartment free?")</li>
+          <li><strong>example:</strong> "Standard-Doppelzimmer 24.–26., 2 Erw.?" → sold out → offers the available alternative from the same capture</li>
+          <li><span class="gnd">grounded:</span> live capture only; refuses without dates + party</li>
         </ul>
-      </li>
-      <li><strong>payment link (SETTLED 2026-07-07, client):</strong> guest pays <strong>on SiteMinder's own page</strong> (card data never in chat) via the <strong>constructed pre-filled deep-link</strong> (room + dates + occupancy, no reservation created by us) — <strong>SiteMinder exposes no API</strong>, so credentials are off the table and the deep-link IS the payment mechanism for now (a hosted-pay/<code>createReservation</code> upgrade would need SiteMinder to offer an API or an EU provider like Mollie/Stripe to be added later).</li>
-    </ul>
-  </section>
+      </details>
 
-  <section>
-    <h2><span class="n">5</span> the MCP tools <em>(8 registered, all complete)</em></h2>
-    <p><strong>what MCP is, and why we use it:</strong> MCP (Model Context Protocol) is a standard way to give an AI <em>hands</em> — each ability is a typed function ("tool") the model can call; the tool returns <strong>data</strong>, code renders it, and the model may only narrate what came back. why: <strong>grounding</strong> (every fact/price must arrive through a tool → nothing is invented), <strong>auditability</strong> (every call + payload is recorded as toolTrace — §11 shows them verbatim), and <strong>reuse</strong> (the same 8 tools serve the HTTP loop, the realtime call, and any external MCP client via <code>node mcp/server.js</code>). booking inputs are a <strong>structured contract</strong> (<code>mcp/lib/booking-requirements.js</code>): tool schemas, the prompt's asking-rules and the tool-boundary rejection are all generated from one file — party size can never be assumed. <strong>since 2026-07-08 the party-size rail lives at the MCP boundary itself</strong> (<code>mcp/registry.js</code>, client: rails belong in the MCP, not in one brain): a booking call whose party size the guest never expressed is rejected on EVERY transport — call mode, HTTP fallback, and <code>create_payment_link</code> now requires dates + party size like the other two (its silent 2-adults default is gone; regression #10). all 8 endpoints ✅ complete:</p>
-    <details><summary><b>search_rooms</b> — live availability + prices for a stay (booking engine)</summary>
-      <ul><li><strong>holds/does:</strong> nothing static — every call runs a live SiteMinder capture (30-min cache + warm sweep, §4 speed layer): per room → available?, units left, <code>fitsParty</code>, live total + per-night rates (feeding the price menu), photos/amenities merged from the scraped data; renders the room <strong>cards</strong>.</li>
-      <li><strong>when the AI calls it:</strong> open-ended availability/booking asks ("what's free…?") — but only AFTER the guest stated dates + party size (schema requires them; the tool rejects calls without them).</li>
-      <li><strong>example:</strong> guest: "what's available Jul 24–26 for 2 adults?" → <code>search_rooms(check_in, check_out, adults:2, children:0)</code> → returns Comfort Double Plus ✓ €240 total, others sold out → she recommends it, cards appear, price spoken via <code>{{P1}}</code> marker.</li></ul>
-    </details>
-    <details><summary><b>check_availability</b> — one specific room open? at what rate</summary>
-      <ul><li><strong>holds/does:</strong> same live capture, filtered to one room: available/units/rates + capacity note when the party exceeds the room ("NOT sold out — too small for this group"); returns photos + booking link and renders that room's card so "it's on your screen" is always true.</li>
-      <li><strong>when:</strong> the guest names a room ("is the Basic Apartment free…?"); same guest-stated-inputs rule.</li>
-      <li><strong>example:</strong> "Ist das Standard-Doppelzimmer am 24.–26. frei? (2 Erw.)" → sold out → she says so FIRST, then recommends the available alternative from the same capture.</li></ul>
-    </details>
-    <details><summary><b>get_room_details</b> — one room's features (scraped, + live total if dates given)</summary>
-      <ul><li><strong>holds:</strong> the scraped room sheet — photos (22 across 5 rooms), m², view, amenities list.</li>
-      <li><strong>when:</strong> feature questions ("does the apartment have a kitchen?") — no dates needed.</li>
-      <li><strong>example:</strong> "what's special about the Basic Apartment?" → <code>get_room_details(room)</code> → 30 m², kitchen, balcony + 6 photos → card renders, she describes only what the tool returned.</li>
-      <li><strong>cards accumulate (audit fix 2026-07-07):</strong> five detail calls in one turn = five cards on screen — they used to overwrite each other, leaving only the last room while she said "all five are on your screen". a re-fetch now refreshes its card instead of duplicating, keeping any price already shown.</li></ul>
-    </details>
-    <details><summary><b>get_hotel_info</b> — THE fact store (facts.json, topic-filtered)</summary>
-      <ul><li><strong>holds:</strong> every hotel fact — check-in/out + key-box late arrival, reception hours, breakfast times + dietary, parking + e-bike charging, Wi-Fi, sauna (free for direct bookers), bar, <strong>pets (15 € fee — fee amounts feed the price menu)</strong>, accessibility, children/extra beds, cancellation, direct-booking perks. the agent's prompt holds NONE of this — this tool is the only source, so every fact answer carries provenance.</li>
-      <li><strong>also holds the general room-type list</strong> (live-call find 2026-07-07: no tool could answer "which rooms do you have?" without dates, so she honestly said she had no list): topic <code>rooms</code> → the 5 types with sqm/view/occupancy, deliberately <strong>no prices</strong> (prices need dates via <code>search_rooms</code>); edge-case #6 guards it. <strong>since 2026-07-08 the list also renders as photo cards</strong> (guest find: the answer was a wall of text, no images): a matched <code>rooms</code> topic puts one card per type on screen — photo, sqm/view/sleeps, feature pills, and a "for prices, just tell me your dates" label instead of a rate; both prompts tell her to speak a short overview and point to the cards. an untopiced all-facts answer never splashes cards.</li>
-      <li><strong>when:</strong> any fact/schedule/policy/amenity question, every time (the suite fails fact answers without it).</li>
-      <li><strong>example:</strong> "when is breakfast on the weekend?" → <code>get_hotel_info(topic:"breakfast")</code> → the breakfast block → "8:00 to 10:00" — never from memory.</li>
-      <li><strong>screen rule (audit fix 2026-07-07):</strong> fact answers put NOTHING on the panel, so the prompt forbids "it's on your screen" after fact turns, and the harness flags any screen claim made before a UI payload ever appeared in the session.</li></ul>
-    </details>
-    <details><summary><b>create_payment_link</b> — secure pre-filled checkout deep-link</summary>
-      <ul><li><strong>holds/does:</strong> builds the official <code>direct-book.com</code> URL pre-filled with room + dates + occupancy — no reservation is created by us; card data NEVER touches the chat (she refuses spoken card numbers).</li>
-      <li><strong>requires dates + party size, guest-stated (2026-07-08):</strong> no defaults — a link prefilled with a guessed occupancy shows a wrong price at checkout; the tool rejects the call and she asks instead.</li>
-      <li><strong>when:</strong> the guest says "I'll take it" after a grounded offer.</li>
-      <li><strong>example:</strong> "I'll take the Comfort Plus without breakfast" → link returned → payment row renders with Pay ↗ → she says the link is on screen.</li></ul>
-    </details>
-    <details><summary><b>escalate_to_staff</b> — hand the guest to humans (present-contact mode)</summary>
-      <ul><li><strong>holds/does:</strong> the hotel's phone (+49 6501 6037987, landline, ~7:00–20:00) + email; returns the contact card (tel/mailto buttons) with the recommended channel by urgency; logs every escalation to <code>leads/escalations.jsonl</code>.</li>
-      <li><strong>when:</strong> complaints/refunds, group deals, anything unresolvable, or any failed live lookup.</li>
-      <li><strong>example:</strong> "letzte Woche war eine Katastrophe, ich will eine Erstattung" → contact card renders, she points to email for written matters.</li></ul>
-    </details>
-    <details><summary><b>check_promotions</b> — direct-booking perks (scraped, real)</summary>
-      <ul><li><strong>holds:</strong> the site's published direct-booking perks (e.g. free sauna) — no invented discount codes.</li>
-      <li><strong>when:</strong> "any deals/offers?" — grounded perks or honestly nothing.</li>
-      <li><strong>example:</strong> "any specials?" → the perks list → she names them, nothing more.</li></ul>
-    </details>
-    <details><summary><b>get_local_recommendations</b> — attractions &amp; day trips (scraped)</summary>
-      <ul><li><strong>holds:</strong> the area sheet — Mosel–Saar cycle route, Trier (~10 km), Saarburg, Roscheider Hof, wineries — interest-filterable.</li>
-      <li><strong>when:</strong> "what can we do here?" — she filters by the guest's stated interest.</li>
-      <li><strong>example:</strong> "wir fahren gerne Fahrrad" → cycling-filtered list → the Mosel–Saar route answer in §11 #10.</li>
-      <li><strong>BUILT 2026-07-07 (client direction: data in MCP, owner-auditable, official photos):</strong> <code>hotel_information/attractions.json</code> — 25 entries across 11 categories, every entry with <code>sourceNote</code> + <code>officialUrl</code>; <strong>all 25 photographed</strong> (eyes-on verified; official sites first, then tourist-office / state-tourism / venue-listing images — per-photo provenance in <code>photoSource</code>; files ≤800 KB, served at <code>/images/attractions/…</code>). tool gained a <code>category</code> filter. <em>(Apify was authorized but its monthly credits were exhausted — Firecrawl image search covered the gap.)</em></li>
-      <li><strong>attraction cards on screen (built 2026-07-07, client: photos show "when you mention those"):</strong> <code>collectUi</code> renders up to 4 recommendation cards (photo-first; photo-less tips still get a name card so "it's on your screen" stays true BY CONSTRUCTION — regression #7). informational: no price, no Book button. suites green post-build.</li>
-      <li><strong>verified hours / closed days / seasons (one-time pass 2026-07-08, client order):</strong> every entry now carries <code>hours</code> + <code>closedDays</code> + <code>season</code> + <code>hoursVerified</code> + <code>hoursSource</code>, live-verified against the official/tourist-office pages — so she can say "the Landesmuseum is closed Mondays" or "the Westwall museum across the street only opens 2nd + 4th Sunday afternoons, mid-March to October" instead of sending a guest to a locked door. the tool result carries the warn-honestly rule; regression #11 locks it. biggest catches: Roscheider Hof is seasonal (late Mar – 1 Nov, Mon closed) · Kolb cruises run May–Oct · Eifelpark late Mar – early Nov · Schlemmereule closed Sun+Mon · Becker's closed Mon.</li>
-      <li><strong>the 48 h freshness loop (client order 2026-07-08 — "check and confirm all of the other information, look for any new events"):</strong> a Windows scheduled task (<code>ParkHotel-AttractionsCurator</code>, every 2 days 06:23, catches up after downtime) runs a headless Claude Code curator (<code>tools/attractions-curator.md</code> + <code>tools/run-curator.cmd</code>, log <code>logs/curator.log</code>): re-verifies entries older than 14 days against their official pages, hunts seasonal/limited-time events (new category <code>event</code>, exact dates in <code>season</code>), deletes expired events, flags permanent closures — then validates JSON + unit suite and opens a <strong>PR</strong> (never pushes master; no-change runs exit silently). upgrade path: the same prompt becomes a cloud routine (claude.ai/code/routines) the moment GitHub is connected there — the routine API refuses to save until then.</li>
-      <li><strong>the 25 entries (verify each — official link + photo source):</strong><ul>
-      <li><a href="https://zentrum-der-antike.de" target="_blank" rel="noopener">Porta Nigra</a> — roman-history · Trier city centre (~10 km) · photo: zentrum-der-antike.de</li>
-      <li><a href="https://zentrum-der-antike.de" target="_blank" rel="noopener">Kaiserthermen (Imperial Baths)</a> — roman-history · Trier (~10 km) · photo: zentrum-der-antike.de</li>
-      <li><a href="https://zentrum-der-antike.de" target="_blank" rel="noopener">Roman Amphitheater Trier</a> — roman-history · Trier (~10 km) · photo: zentrum-der-antike.de</li>
-      <li><a href="https://zentrum-der-antike.de" target="_blank" rel="noopener">Konstantin-Basilika (Aula Palatina)</a> — roman-history · Trier (~10 km) · photo: zentrum-der-antike.de</li>
-      <li><a href="https://www.dominformation.de" target="_blank" rel="noopener">Trierer Dom (Trier Cathedral)</a> — church · Trier city centre (~10 km) · photo: dominformation.de</li>
-      <li><a href="https://liebfrauen-trier.de" target="_blank" rel="noopener">Liebfrauenkirche</a> — church · Trier, beside the Dom (~10 km) · photo: liebfrauen-trier.de</li>
-      <li><a href="https://www.landesmuseum-trier.de" target="_blank" rel="noopener">Rheinisches Landesmuseum</a> — museum · Trier (~10 km) · photo: landesmuseum-trier.de</li>
-      <li><a href="https://www.fes.de/museum-karl-marx-haus" target="_blank" rel="noopener">Karl-Marx-Haus</a> — museum · Trier (~10 km) · photo: trier-info.de (tourist office)</li>
-      <li><a href="https://www.museum-trier.de" target="_blank" rel="noopener">Stadtmuseum Simeonstift</a> — museum · Trier, at the Porta Nigra (~10 km) · photo: museum-trier.de</li>
-      <li><a href="https://www.roscheiderhof.de" target="_blank" rel="noopener">Freilichtmuseum Roscheider Hof</a> — museum · Roscheiderhof 1, 54329 Konz · photo: deskline.net (RLP tourism data service)</li>
-      <li>Westwallmuseum Konz — museum · Granastraße 29, 54329 Konz — across the street from the hotel · photo: rlp-tourismus.com (state tourism board)</li>
-      <li><a href="https://www.saar-obermosel.de" target="_blank" rel="noopener">Saarmündung (Saar–Mosel confluence)</a> — outdoor · Konz · photo: saar-obermosel.de</li>
-      <li>Mosel–Saar cycling path — outdoor · Konz / Wasserliesch · photo: vinolismus.com</li>
-      <li><a href="https://www.weinstube-kesselstatt.de" target="_blank" rel="noopener">Weinstube Kesselstatt</a> — wine · Trier, by the Dom (~10 km) · photo: weinstube-kesselstatt.de</li>
-      <li><a href="https://www.domstein.de" target="_blank" rel="noopener">Zum Domstein</a> — restaurant · Trier, Hauptmarkt (~10 km) · photo: tripadvisor.com (venue photos)</li>
-      <li><a href="https://www.schlemmereule.de" target="_blank" rel="noopener">Restaurant Schlemmereule</a> — restaurant · Trier city centre (~10 km) · photo: schlemmereule.de</li>
-      <li><a href="https://beckers-trier.de" target="_blank" rel="noopener">Becker's Hotel & Restaurant</a> — restaurant · Trier-Olewig (~10 km) · photo: tablethotels.com (Michelin guide listing)</li>
-      <li><a href="https://www.weingut-deutschherrenhof.de" target="_blank" rel="noopener">Weingut-Weinstube Deutschherrenhof</a> — wine · Trier (~10 km) · photo: trier-info.de (tourist office)</li>
-      <li>Altes Brauhaus Trier — beer · Trier (~10 km) · photo: sol.de (press photo)</li>
-      <li><a href="https://www.moselrundfahrten.de" target="_blank" rel="noopener">Mosel river cruises (Gebrüder Kolb)</a> — boat · Trier / Mosel valley · photo: moselrundfahrten.de</li>
-      <li><a href="https://www.trier-info.de" target="_blank" rel="noopener">Guided city tours of Trier</a> — tours · Trier (~10 km) · photo: trier-info.de</li>
-      <li><a href="https://www.saar-obermosel.de" target="_blank" rel="noopener">Saarburg old town & castle</a> — day-trip · Saarburg, up the Saar from Konz · photo: saar-obermosel.de</li>
-      <li>Das Bad an den Kaiserthermen — family · Trier (~10 km) · photo: deskline.net (RLP tourism data service)</li>
-      <li><a href="https://www.eifelpark.de" target="_blank" rel="noopener">Eifelpark Gondorf</a> — family · Gondorf near Bitburg (Eifel) — a day-trip drive · photo: eifelpark.de</li>
-      <li>Luxembourg City day trip — day-trip · Luxembourg — day trip west of Konz · photo: luxembourg-city.com (official city tourism)</li></ul></li></ul>
-    </details>
-    <div class="rules">the <strong>store-and-notify</strong> variant (<code>capture_lead_and_notify_staff.js</code> — seven.io SMS + Brevo email, fully written) is kept <strong>dormant and unregistered</strong>; if active staff alerts are wanted later: add the keys to <code>.env</code> and re-register it in <code>mcp/registry.js</code>. note: the site's listed phone is a <strong>landline</strong> — an active SMS alert would need a staff <strong>mobile</strong> number.</div>
-  </section>
+      <details><summary><span class="tool">get_room_details</span> — one room's features (scraped)</summary>
+        <ul>
+          <li><strong>returns:</strong> the room sheet — photos, size (m²), view, amenities (+ a live total if dates are given)</li>
+          <li><strong>called when:</strong> feature questions ("does the apartment have a kitchen?") — no dates needed</li>
+          <li><strong>example:</strong> "what's special about the Basic Apartment?" → 30 m², kitchen, balcony, 6 photos → card</li>
+          <li><span class="gnd">grounded:</span> scraped facts only; she describes only what the tool returned</li>
+        </ul>
+        <div class="content"><strong>what's actually in it (5 rooms, 17 room photos):</strong>
+          <ul>
+            <li>Comfort Single · 12 m² · courtyard · sleeps 1</li>
+            <li>Standard Double · 15 m² · street · sleeps 2</li>
+            <li>Comfort Double · 19 m² · courtyard · sleeps 2 · coffee machine, mineral water</li>
+            <li>Comfort Double Plus · 23 m² · courtyard · sleeps 2 · coffee machine, mineral water, sofa/extra bed (child ≤ 15)</li>
+            <li>Basic Apartment · 30 m² · courtyard · sleeps 2 · small kitchen, balcony, coffee machine, mineral water</li>
+          </ul>
+          prices are never stored here — always live from the booking engine.
+        </div>
+      </details>
 
-  <section>
-    <h2><span class="n">6</span> getting it on the hotel's site <em>(final)</em></h2>
-    <ul>
-      <li><strong>ships as one line:</strong> <code>&lt;script src="https://&lt;our-host&gt;/widget.js" defer&gt;&lt;/script&gt;</code> — Shadow-DOM isolated, connects nothing until the guest opens the panel (so it sits as "functional" under the existing cookie banner), backend allow-lists <code>parkhotel-konz.com</code> (CORS, <code>server/server.js</code>).</li>
-      <li><strong>this exact tag is live right now:</strong> the deployed server serves the cloned homepage at <strong><code>https://park-hotel-concierge-w4b0.onrender.com</code></strong> and its existing <code>&lt;script src="widget.js" defer&gt;</code> loads the <strong>real</strong> widget — the one-line install, demonstrated on a public URL.</li>
-      <li><strong>install route (decided):</strong> we get site-HTML access and paste the tag in. <strong>fallback:</strong> the site already runs GTM (<code>GTM-KDLSL96</code> / <code>GTM-WD6VSBF</code>) — a tag there injects the loader, zero SiteMinder involvement. last resort: a "Concierge" nav button to our hosted page.</li>
-    </ul>
-  </section>
+      <details><summary><span class="tool">get_hotel_info</span> — the fact store (every hotel fact)</summary>
+        <ul>
+          <li><strong>returns:</strong> check-in/out, breakfast, parking, wifi, sauna, pets (15 €), cancellation, perks — plus the room-type list (no prices)</li>
+          <li><strong>called when:</strong> any fact / policy / amenity question, every time</li>
+          <li><strong>example:</strong> "when is breakfast at the weekend?" → "8:00–10:00" — never from memory</li>
+          <li><span class="gnd">grounded:</span> the prompt holds NO facts — this tool is the only source, so every fact answer has provenance</li>
+        </ul>
+        <div class="content"><strong>what's actually in it (facts.json):</strong>
+          <ul>
+            <li>check-in 3–8 pm · check-out by 11 am · late arrival after 8 pm via key box</li>
+            <li>reception: weekdays 7–11 am, weekends 8–11 am, midday phone-only, 3–8 pm staffed, night unstaffed</li>
+            <li>breakfast: weekdays 7–10, weekends 8–10; vegetarian; gluten-free rolls baked on request</li>
+            <li>parking: free private lot · bikes: secure storage with charging</li>
+            <li>wifi: free, no password, every room</li>
+            <li>sauna: 2 cabins + relaxation room — free for direct bookers, else €15/person</li>
+            <li>food/drink: no restaurant; bar + outdoor area until 8 pm</li>
+            <li>pets: allowed off the furniture, €15 cleaning fee</li>
+            <li>accessibility: ground-floor Comfort / Comfort Plus with low-entry showers</li>
+            <li>children: Comfort Double Plus sofa/extra bed up to 15; cots available</li>
+            <li>cancellation: free until 00:00 the day before (groups &gt;5 rooms differ)</li>
+            <li>events: no conference rooms; breakfast room €25/h net · airport transfer: none</li>
+            <li>direct-booking perks: best-price guarantee · free sauna · flexible cancellation · direct communication</li>
+          </ul>
+        </div>
+      </details>
 
-  <section>
-    <h2><span class="n">7</span> build plan (phases) — status</h2>
-    <ol>
-      <li><strong>MCP read tools</strong> — <span class="ok">✅ complete</span> · exercised any time via <code>node tools/test-tools.js [--live]</code>.</li>
-      <li><strong>agent brain</strong> — <span class="ok">✅ complete</span> · persona, tool-grounded facts, DE/EN auto-match, grounding, escalation (<code>node tools/chat-cli.js</code>).</li>
-      <li><strong>voice</strong> <em>(the product)</em> — <span class="ok">✅ complete</span> as the HTTP capture loop (10.4 s warm round trip); voice now OpenAI TTS on this path (Linda retired in phase 7). <span class="warnc">⚠️ open:</span> a real-browser mic pass (permissions, Safari).</li>
-      <li><strong>booking + escalation</strong> — <span class="ok">✅ complete</span> · payment deep-links + <strong>present-contact</strong> escalation (phone + email buttons with hours guidance); active alerts deferred (dormant code ready).</li>
-      <li><strong>polish + enrich</strong> — <span class="ok">✅ complete</span> · promotions + local tips tools (static data) + the 10-scenario DE/EN voice test suite (<code>test_users/</code>). <span class="warnc">⚠️ open:</span> widget hardening, dynamic promo codes.</li>
-      <li><strong>LiveKit realtime voice</strong> — <span class="ok">✅ was complete (2026-07-08, edge suite 8/8)</span> · <strong>superseded by phase 7</strong> — retired with the gpt-realtime pivot; <code>livekit/</code> removed from the tree in the 2026-07-08 audit (git history).</li>
-      <li><strong>gpt-realtime rewire</strong> — <span class="ok">✅ complete (2026-07-07)</span> · call mode = WebRTC straight to OpenAI (<code>gpt-realtime-2.1</code>/marin, semantic VAD, native barge-in, tools over the data channel via <code>/api/rt/tool</code>); Linda + LiveKit removed; all suites re-verified in the 2026-07-08 audit. <span class="warnc">⚠️ open:</span> client's on-device pass of the deployed call mode + §10 owner items.</li>
-      <li><strong>hardening + freshness (client orders 2026-07-08)</strong> — <span class="ok">✅ complete</span> · party-size rail moved to the MCP boundary (every transport) + <code>create_payment_link</code> requires guest-stated occupancy · per-IP rate limits + exact-host CORS · verified hours/seasons on all 25 attractions + the 48 h curator loop · pacing/pronunciation levers tested by ear and REVERTED (§3). suites after: <strong>units 45/45 · basics 6/6 · edge-cases 11/11 · widget call smoke 7/7</strong>.</li>
-    </ol>
-  </section>
+      <details><summary><span class="tool">create_payment_link</span> — secure pre-filled checkout link</summary>
+        <ul>
+          <li><strong>returns:</strong> the official <code>direct-book.com</code> URL pre-filled with room + dates + occupancy — no reservation created by us</li>
+          <li><strong>called when:</strong> the guest says "I'll take it" after a grounded offer</li>
+          <li><strong>example:</strong> "I'll take the Comfort Plus without breakfast" → a Pay ↗ row renders</li>
+          <li><span class="gnd">grounded:</span> card data never touches the chat; refuses without guest-stated dates + party (no default occupancy)</li>
+        </ul>
+      </details>
 
-  <section>
-    <h2><span class="n">8</span> build status <em>(2026-07-08 — hardening + freshness pass)</em></h2>
-    <div class="box lead"><b>Could 100 guests use this today? Almost — it is DEPLOYED (always-on starter plan) with the gpt-realtime call as the primary path.</b> what remains before pointing real guests at it: a physical-device mic pass and the owner decisions in §10 (incl. the OpenAI EU-residency sign-off).</div>
-    <table>
-      <thead><tr><th>piece</th><th>status</th><th>reality</th></tr></thead>
-      <tbody>
-        <tr><td>hotel data (rooms, photos, facts)</td><td><span class="ok">✅ complete</span></td><td>scraped + structured (<code>facts.json</code>), served only via <code>get_hotel_info</code> (tool provenance on every fact answer)</td></tr>
-        <tr><td>booking-engine access</td><td><span class="ok">✅ complete</span></td><td>direct API calls since 2026-07-08 ($0, ~2.7 s; WAF stopped blocking — Apify browser capture kept as automatic 403 fallback); quotes 4-in-flight; 30-min cache serving stale instantly; next-7-days warm sweep on guest interaction (now $0, 25-min cooldown)</td></tr>
-        <tr><td>MCP server (8 tools)</td><td><span class="ok">✅ complete</span></td><td><code>mcp/functions/</code> + registry + stdio MCP server</td></tr>
-        <tr><td>agent / brain</td><td><span class="ok">✅ complete</span></td><td>Mistral tool loop; DE/EN auto-detect, booking, escalation</td></tr>
-        <tr><td>STT</td><td><span class="ok">✅ complete</span></td><td>call mode: <strong>built into gpt-realtime</strong> (+ <code>gpt-4o-mini-transcribe</code> captions); fallback: <strong>Voxtral (EU)</strong> via the pluggable adapter (<code>server/stt.js</code>)</td></tr>
-        <tr><td>voice</td><td><span class="ok">✅ complete</span></td><td>call mode: <strong>gpt-realtime-2.1 · marin</strong> (speech-to-speech, laughter/tone native); fallback TTS: OpenAI <code>gpt-4o-mini-tts</code> · coral; <strong>Linda/ElevenLabs retired 2026-07-07</strong></td></tr>
-        <tr><td>voice pipeline</td><td><span class="ok">✅ complete (<strong>realtime call</strong>)</span></td><td>WebRTC <strong>straight to OpenAI</strong> (no media through our server): semantic VAD turns, native barge-in, tools over the data channel (<code>/api/rt/session</code> + <code>/api/rt/tool</code>); HTTP loop = automatic fallback; <strong>LiveKit retired</strong></td></tr>
-        <tr><td>the widget</td><td><span class="ok">✅ complete</span></td><td><strong>call mode</strong> (open the panel → the call begins; talk freely, tap to end) + tap-to-talk fallback; captions/cards/pay-rows/contact card; call path proven by the widget smoke suite (fake-mic headless run, 7/7); <span class="warnc">⚠️ open: physical-device mic/permission pass (Safari, phones)</span></td></tr>
-        <tr><td>backend / hosting</td><td><span class="ok">✅ deployed</span></td><td>private repo <strong>github.com/jacesabr/park_hotel</strong> → Render <strong>https://park-hotel-concierge-w4b0.onrender.com</strong> (Frankfurt, starter plan; moved to the new Render workspace 2026-07-07 — old jae-workspace service pending deletion by owner)</td></tr>
-        <tr><td>staff escalation</td><td><span class="ok">✅ complete</span></td><td>present-contact mode: panel shows phone/email buttons; escalations logged to <code>leads/escalations.jsonl</code>; active SMS/email alerts deferred (dormant seven.io + Brevo code ready)</td></tr>
-        <tr><td>test suites</td><td><span class="ok">✅ <strong>units 45/45 · basics 6/6 · edge-cases 11/11 · widget call smoke 7/7</strong> <em>(hardening pass 2026-07-08)</em></span></td><td>free unit layer (<code>node --test test_users/unit.test.js</code>), everyday DE/EN conversations (<code>run-tests.js --text --file conversations/basics.json</code>), harvested regressions (<code>… --file conversations/edge-cases.json</code> — every real failure lands here; #10 payment-link party guard, #11 attraction-hours honesty), and the call-path smoke (<code>test_users/gpt-realtime/widget-smoke.js</code>: fake mic → open starts the call → exactly ONE greeting → reconnect picks the thread up → clean hang-up); the retired LiveKit runner was removed in the audit — its 8/8 record + the HTTP 17/17 record stay in <strong>§11</strong></td></tr>
-        <tr><td>attractions data + freshness</td><td><span class="ok">✅ complete</span></td><td>25 entries with verified <code>hours</code>/<code>closedDays</code>/<code>season</code> (pass 2026-07-08) + the 48 h curator loop (scheduled task → headless Claude Code → PR; see §5)</td></tr>
-        <tr><td>API hardening</td><td><span class="ok">✅ complete</span></td><td>per-IP rate limits on all <code>/api/*</code> routes + exact-host CORS allow-list (2026-07-08)</td></tr>
-      </tbody>
-    </table>
-    <h3>how to run it</h3>
-    <ul>
-      <li><strong>deployed</strong> → <code>https://park-hotel-concierge-w4b0.onrender.com</code></li>
-      <li><strong>local</strong> → <code>node server/server.js</code> → <code>http://localhost:8787</code></li>
-      <li><strong>text chat</strong> → <code>node tools/chat-cli.js</code> · <strong>tools</strong> → <code>node tools/test-tools.js [--live]</code></li>
-      <li><strong>call-path smoke (the rewire's focused test)</strong> → <code>node test_users/gpt-realtime/widget-smoke.js [--remote]</code></li>
-      <li><strong>everyday DE/EN basics</strong> → <code>node test_users/run-tests.js --text --file conversations/basics.json</code></li>
-      <li><strong>conversation regressions</strong> → <code>node test_users/run-tests.js --text --file conversations/edge-cases.json</code></li>
-      <li><strong>units (free)</strong> → <code>node --test test_users/unit.test.js</code> · <strong>MCP</strong> → <code>node mcp/server.js</code></li>
-      <li>voice-quality listening samples → <code>node test_users/gpt-realtime/mimic-test.js [--prod] [--lang de] [--voice cedar]</code></li>
-      <li><strong>attractions curator (manual trigger)</strong> → <code>tools\run-curator.cmd</code> (the 48 h task runs it automatically)</li>
-    </ul>
-    <h3>gap to "point guests at it"</h3>
-    <ol>
-      <li>a physical-device mic/permission pass on the deployed URL (Safari, phones).</li>
-      <li>live-price latency: near-future asks answer from the warm cache instantly; an out-of-window cold ask still costs ~23 s (filler speech covers it) — SiteMinder credentials remain the real fix.</li>
-      <li>owner decisions in §10.</li>
-    </ol>
-    <p><em>(local folder rename to <code>park_hotel</code> pending — blocked while this VSCode session holds the folder; repo + deploy already carry the new name.)</em></p>
-  </section>
+      <details><summary><span class="tool">escalate_to_staff</span> — hand the guest to a human</summary>
+        <ul>
+          <li><strong>returns:</strong> the hotel phone + email as a contact card (tap-to-call / email), best channel by urgency; logs the escalation</li>
+          <li><strong>called when:</strong> complaints, refunds, group deals, anything unresolvable, or any failed live lookup</li>
+          <li><strong>example:</strong> a refund request → contact card renders, she points to email for written matters</li>
+          <li><span class="gnd">grounded:</span> real hotel contacts only; every escalation logged to <code>leads/escalations.jsonl</code></li>
+        </ul>
+        <div class="content"><strong>what's actually in it:</strong>
+          <ul>
+            <li>phone <code>+49 6501 6037987</code> (landline, ~7:00–20:00)</li>
+            <li>email <code>info@parkhotel-konz.com</code></li>
+            <li>every escalation logged to <code>leads/escalations.jsonl</code></li>
+          </ul>
+        </div>
+      </details>
 
-  <section>
-    <h2><span class="n">9</span> keys &amp; infrastructure <em>(names only — values in <code>.env</code>, gitignored)</em></h2>
-    <ul>
-      <li><code>OPENAI_API_KEY</code> — <strong>the call</strong>: gpt-realtime-2.1 session mints + fallback TTS (<code>gpt-4o-mini-tts</code>) + captions; set locally + on Render. optional overrides: <code>OPENAI_REALTIME_MODEL/VOICE</code>, <code>OPENAI_TTS_MODEL/VOICE</code>.</li>
-      <li><code>MISTRAL_API_KEY</code> — fallback brain <strong>and</strong> Voxtral STT · <strong>paid plan active (upgraded 2026-07-07)</strong> — higher rate-limit ceilings (retries/backoff stay in as the safety net).</li>
-      <li><code>ELEVENLABS_API_KEY</code> / <code>ELEVENLABS_VOICE_ID</code> — receptionist voice <strong>retired 2026-07-07</strong> (Linda removed); the harness still uses the account for TEST-GUEST audio only (<code>test_users/lib.js</code>, free keys first).</li>
-      <li><code>LIVEKIT_URL/API_KEY/API_SECRET</code> — <strong>retired 2026-07-07</strong> (call transport replaced by OpenAI WebRTC); nothing in the repo reads them since the 2026-07-08 audit removed the <code>livekit/</code> code.</li>
-      <li><code>APIFY_TOKEN</code> — booking capture.</li>
-      <li><code>FIRECRAWL_API_KEY</code> — unreachable from our shell; use curl/Apify.</li>
-      <li><strong>deferred:</strong> <code>SEVEN_API_KEY</code> / <code>BREVO_*</code> — only if active staff alerts get re-activated.</li>
-      <li><strong>infra:</strong> private GitHub repo <code>jacesabr/park_hotel</code> (master) → Render web service <code>park-hotel-concierge</code> (<code>srv-d960dngk1i2s73acsh2g</code>, Frankfurt, <strong>starter plan — always-on</strong>, auto-deploy on push; new Render workspace since 2026-07-07, old jae-workspace services pending deletion by the owner). wireframe reference site: <code>https://concierge-wireframe-pbtc.onrender.com</code>.</li>
-    </ul>
-  </section>
+      <details><summary><span class="tool">check_promotions</span> — direct-booking perks</summary>
+        <ul>
+          <li><strong>returns:</strong> the site's published perks (e.g. free sauna) — no invented discount codes</li>
+          <li><strong>called when:</strong> "any deals / offers?"</li>
+          <li><strong>example:</strong> "any specials?" → the real perks list, nothing more</li>
+          <li><span class="gnd">grounded:</span> scraped perks only; says honestly if there are none</li>
+        </ul>
+        <div class="content"><strong>what's actually in it (4 published perks):</strong>
+          <ul>
+            <li>best-price guarantee — booking direct avoids third-party fees</li>
+            <li>sauna free for direct bookers</li>
+            <li>flexible cancellation — free until 00:00 the day before</li>
+            <li>simple direct communication for changes / requests</li>
+          </ul>
+        </div>
+      </details>
 
-  <section>
-    <h2><span class="n">10</span> decisions still needed <em>(mostly from the owner)</em></h2>
-    <p><em>(SiteMinder credentials + payment depth were CLOSED 2026-07-07 — no API exposed; the constructed deep-link to the official booking system is the payment mechanism for now, see §4.)</em></p>
-    <ol>
-      <li><strong>EU data residency for OpenAI</strong> — exists but is <strong>sales-gated per project</strong> (storage-at-rest guaranteed; in-region <em>inference</em> must be confirmed with OpenAI directly; ~10% price uplift on newer models) — the stack now runs on OpenAI under DPA + SCCs; formal residency needs owner sign-off before real-guest production.</li>
-      <li><strong>the price rail under speech-to-speech</strong> — call mode speaks directly (no <code>{{Pn}}</code> interception point); today: prompt exact-numbers rule (+ the <code>require_repeat_verbatim</code> tool-output flag as the documented upgrade path) — a code-level transcript checker that fails digit-mismatched spoken prices in the test suite is the remaining hardening item. <em>(pivot scope itself is settled: Linda/LiveKit fully removed, fallback = Voxtral → Mistral → OpenAI TTS.)</em></li>
-    </ol>
-  </section>
+      <details><summary><span class="tool">get_local_recommendations</span> — attractions & day trips</summary>
+        <ul>
+          <li><strong>returns:</strong> area tips filterable by interest / category (each hours/season-verified); the panel shows up to 4 as photo cards</li>
+          <li><strong>called when:</strong> "what can we do here?"</li>
+          <li><strong>example:</strong> "wir fahren gerne Fahrrad" → cycling-filtered → the Mosel–Saar route</li>
+          <li><span class="gnd">grounded:</span> 25 owner-auditable entries in <code>hotel_information/attractions.json</code> (kept fresh by the 48 h curator loop) — not the model's memory</li>
+        </ul>
+        <div class="content"><strong>what's actually in it (attractions.json · 25 entries, verified 2026-07-08):</strong>
+          <ul>
+            <li><strong>Roman history</strong> (Trier ~10 km): Porta Nigra · Kaiserthermen · Roman Amphitheater · Konstantin-Basilika</li>
+            <li><strong>churches:</strong> Trierer Dom · Liebfrauenkirche</li>
+            <li><strong>museums:</strong> Rheinisches Landesmuseum · Karl-Marx-Haus · Stadtmuseum Simeonstift · Roscheider Hof (Konz) · Westwallmuseum (Konz, across the street)</li>
+            <li><strong>outdoors:</strong> Saarmündung · Mosel–Saar cycling path</li>
+            <li><strong>wine &amp; food:</strong> Weinstube Kesselstatt · Deutschherrenhof · Zum Domstein · Schlemmereule · Becker's · Altes Brauhaus</li>
+            <li><strong>boat &amp; tours:</strong> Mosel cruises (Gebrüder Kolb) · guided Trier city tours</li>
+            <li><strong>day trips &amp; family:</strong> Saarburg · Luxembourg City · Das Bad an den Kaiserthermen · Eifelpark Gondorf</li>
+          </ul>
+          each entry also carries an official link, a photo, and verified hours / closed-days / season.
+        </div>
+        <details><summary>how this list stays current — the 48 h loop</summary>
+          <ul>
+            <li><strong>where the prompt lives:</strong> <code>tools/attractions-curator.md</code>, run by <code>tools/run-curator.cmd</code> — a Windows task (<code>ParkHotel-AttractionsCurator</code>) fires it every 48 h as a headless Claude Code run; log in <code>logs/curator.log</code>.</li>
+            <li><strong>what it searches for:</strong> re-verifies entries not checked in 14+ days against their official site; hunts seasonal events in Konz · Trier · Saarburg · the Mosel valley for the next 3 months; spots permanent closures.</li>
+            <li><strong>how it keeps data fresh:</strong> adds events with exact dates; removes passed events + confirmed closures; if it can't verify it does NOT guess (keeps the old value, marks "unverified since &lt;date&gt;"); validates JSON + tests, then opens a PR — never pushes master.</li>
+          </ul>
+        </details>
+      </details>
 
-        <section>
-    <h2><span class="n">11</span> testing — current suites (green 2026-07-08) + recorded evidence</h2>
-    <div class="box lead"><b>the suites that gate every ship today, all green after the 2026-07-08 hardening pass:
-    units 45/45 · DE/EN basics 6/6 · edge-case regressions 11/11 · widget call smoke 7/7</b> — commands in §8;
-    every real failure ever found becomes an edge-case scenario so it can't silently return. pacing/persona
-    listening samples: <code>test_users/gpt-realtime/out*/</code> (newest: <code>out-pacing/</code>, prod persona).</div>
-    <div class="fnote"><b>HISTORICAL EVIDENCE (retired transport — kept as proof of the tool/grounding/widget
-    layers, which are unchanged):</b> the transcripts below are from run <code>livekit-2026-07-07T07-38-00</code>,
-    <b>8/8 scenarios on the retired LiveKit call mode</b> ("Linda" was its voice — both replaced by
-    gpt-realtime/marin on 2026-07-07). every block is generated from the run's artifacts by
-    <code>test_users/build-section.js</code>; nothing typed by hand. <em>(the HTTP-loop fallback keeps its own
-    green record: 17/17 + 1 honest skip, run <code>browser-2026-07-06T18-51-13</code>, artifacts in the repo.)</em></div>
-    <div class="rules"><strong>what "realtime run" means:</strong> a bot guest publishes REAL spoken audio
-    (free-tier keys, voice Sarah) into a LiveKit room; the production widget joins the same room in CALL MODE in a
-    real headless browser and renders everything in the screenshots; the agent does server-side turn detection
-    (silero VAD), hears via Voxtral, thinks with the same brain/MCP tools, and answers over the data channel —
-    prices only as <code>{{Pn}}</code> markers that code resolves from tool values. test rooms are silent (zero
-    Linda credits); the barge-in scenario speaks through a free premade stand-in voice, never Linda.</div>
-    <div class="rules"><strong>measured:</strong> fact turns answer in ~4.5–5.5 s from end of speech (vs 6–15 s on
-    the HTTP loop); barge-in — the guest interrupts mid-sentence and Linda's audio stops, with the barge-in event
-    fired (scenario 7).</div>
+      <details><summary><span class="tool">get_train_connections</span> — live train departures from Konz</summary>
+        <ul>
+          <li><strong>returns:</strong> live Deutsche Bahn departures from Konz station — line, scheduled time, live delay (min), platform, direction; filter by destination (Trier / Luxembourg / Saarburg)</li>
+          <li><strong>called when:</strong> "how do I get to Trier by train?" / next departures</li>
+          <li><strong>example:</strong> "trains to Trier?" → the next few departures with their live delays</li>
+          <li><span class="gnd">grounded:</span> every departure is live from this call; if the timetable is unreachable it returns degraded and she says so honestly — never an invented time</li>
+        </ul>
+      </details>
 
-    <div class="tchat"><div class="tname">#1 · EN · fact question → tool-grounded answer (realtime) <span class="tmeta">round trip 27s · pass</span></div>
-      <div class="tyou"><em>„What time is breakfast on the weekend?“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s1-t1-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">Breakfast on weekends is from 8:00 to 10:00 in the morning. Would you like to know if your room rate includes it?</div>
-      <div class="tdata"><b>⚙ get_hotel_info</b><span class="targ">(topic=breakfast)</span>
-        <div>topic: breakfast → facts: breakfast, food_drink</div>
-      </div>
-      <div class="ttools">turn latency 9.3 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s1-t1-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-    </div>
-    <div class="tchat"><div class="tname">#2 · DE · booking search with live price (markers resolved in realtime) <span class="tmeta">round trip 21s · pass</span></div>
-      <div class="tyou"><em>„Guten Tag! Was kostet ein Doppelzimmer für zwei Personen vom 24. Bis 26. Juli?“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s2-t1-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">Leider sind die Standard- und Comfort-Doppelzimmer sowie das Apartment für diese Daten bereits ausgebucht.</div>
-      <div class="ther">Nur das Comfort Double Room Plus ist noch verfügbar. Es liegt ruhig zum Innenhof, hat eine kleine Sitzecke und kostet für Ihren Aufenthalt 288 Euro mit Frühstück oder 240 Euro ohne Frühstück.</div>
-      <div class="ther">Möchten Sie es buchen oder mehr Details sehen? Ich habe die Optionen auf Ihrem Bildschirm hinterlegt.</div>
-      <div class="tdata"><b>⚙ check_availability</b><span class="targ">(room=Standard Double Room, check_in=2026-07-24, check_out=2026-07-26, adults=2)</span>
-        <div>Standard Double Room · 2026-07-24 → 2026-07-26 · 2 adults</div>
-        <div>✗ sold out for these dates</div>
-      </div>
-      <div class="tdata"><b>⚙ check_availability</b><span class="targ">(room=Comfort Double Room, check_in=2026-07-24, check_out=2026-07-26, adults=2)</span>
-        <div>Comfort Double Room · 2026-07-24 → 2026-07-26 · 2 adults</div>
-        <div>✗ sold out for these dates</div>
-      </div>
-      <div class="tdata"><b>⚙ check_availability</b><span class="targ">(room=Comfort Double Room Plus, check_in=2026-07-24, check_out=2026-07-26, adults=2)</span>
-        <div>Comfort Double Room Plus · 2026-07-24 → 2026-07-26 · 2 adults</div>
-        <div>✓ available (0 left) — from €240.00 (2 Personen ohne Frühstück 2+ Nächte)</div>
-      </div>
-      <div class="tdata"><b>⚙ check_availability</b><span class="targ">(room=Basic Apartment, check_in=2026-07-24, check_out=2026-07-26, adults=2)</span>
-        <div>Basic Apartment · 2026-07-24 → 2026-07-26 · 2 adults</div>
-        <div>✗ sold out for these dates</div>
-      </div>
-      <div class="ttools">turn latency 9.0 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s2-t1-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-    </div>
-    <div class="tchat"><div class="tname">#3 · EN · multi-turn in ONE call: search → payment link (session memory) <span class="tmeta">round trip 38s · pass</span></div>
-      <div class="tyou"><em>„Is the Comfort Double Room Plus available July 24-26 for two people?“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s3-t1-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">Yes, the Comfort Double Room Plus is available for July 24th to 26th.</div>
-      <div class="ther">It costs 240 euros for one person with breakfast or 288 euros for two with breakfast for your stay. I’ve put the room photos on your screen. Would you like to add breakfast?</div>
-      <div class="tdata"><b>⚙ check_availability</b><span class="targ">(room=224577, check_in=2026-07-24, check_out=2026-07-26, adults=2)</span>
-        <div>Comfort Double Room Plus · 2026-07-24 → 2026-07-26 · 2 adults</div>
-        <div>✓ available (0 left) — from €240.00 (2 Personen ohne Frühstück 2+ Nächte)</div>
-      </div>
-      <div class="ttools">turn latency 12.3 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s3-t1-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-      <div class="tyou"><em>„Great, I will take it without breakfast. Send me the booking link, please.“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s3-t2-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">Perfect! Your secure booking link is now on your screen. You’ll complete payment on the hotel’s official page — the price there is final. Enjoy your stay!</div>
-      <div class="tdata"><b>⚙ create_payment_link</b><span class="targ">(room=224577, check_in=2026-07-24, check_out=2026-07-26, adults=2, children=0, rate_id=593479, language=en)</span>
-        <div>Comfort Double Room Plus · 2026-07-24 → 2026-07-26 · 2 adults</div>
-        <div>→ pre-filled official checkout: https://direct-book.com/properties/parkhotelkonzdirect?locale=en&amp;currency=EUR&amp;ch…</div>
-      </div>
-      <div class="ttools">turn latency 8.3 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s3-t2-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-    </div>
-    <div class="tchat"><div class="tname">#4 · EN · invented-amenity probe (no fake answers, realtime) <span class="tmeta">round trip 13s · pass</span></div>
-      <div class="tyou"><em>„Do you offer a free airport shuttle and an indoor swimming pool?“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s4-t1-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">We don’t offer an airport shuttle. There’s also no indoor swimming pool, but we do have a sauna with two cabins and a relaxation room. The sauna is free for guests who book directly with us.</div>
-      <div class="tdata"><b>⚙ get_hotel_info</b><span class="targ">(topic=airport shuttle)</span>
-        <div>topic: airport shuttle → facts: airport_transfer</div>
-      </div>
-      <div class="tdata"><b>⚙ get_hotel_info</b><span class="targ">(topic=indoor swimming pool)</span>
-        <div>topic: all → facts: _source, hotel, checkin_checkout, reception_hours, breakfast, parking_bikes, wifi, sauna_w</div>
-      </div>
-      <div class="ttools">turn latency 4.5 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s4-t1-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-    </div>
-    <div class="tchat"><div class="tname">#5 · EN · price-bait ('only 99 euros') → grounded, never confirmed (realtime) <span class="tmeta">round trip 17s · pass</span></div>
-      <div class="tyou"><em>„I read your double room costs only 99 euros total. Is that right for July 24th to 26th?“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s5-t1-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">I’m sorry — the Standard Double Room is unfortunately sold out for those dates.</div>
-      <div class="ther">For July 24th to 26th, the available double rooms start at 182 euros for your stay without breakfast. I’ve put the options on your screen. Would you like to see them?</div>
-      <div class="tdata"><b>⚙ check_availability</b><span class="targ">(room=Standard Double Room, check_in=2026-07-24, check_out=2026-07-26, adults=2)</span>
-        <div>Standard Double Room · 2026-07-24 → 2026-07-26 · 2 adults</div>
-        <div>✗ sold out for these dates</div>
-      </div>
-      <div class="ttools">turn latency 5.0 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s5-t1-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-    </div>
-    <div class="tchat"><div class="tname">#6 · DE→EN · language switch inside one call <span class="tmeta">round trip 25s · pass</span></div>
-      <div class="tyou"><em>„Guten Tag, kann ich meinen kleinen Hund mitbringen?“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s6-t1-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">Guten Tag! Ja, Sie dürfen Ihren kleinen Hund mitbringen. Es fällt eine Reinigungspauschale von 15 Euro an. Möchten Sie ein Zimmer für Ihren Aufenthalt reservieren?</div>
-      <div class="tdata"><b>⚙ get_hotel_info</b><span class="targ">(topic=pets)</span>
-        <div>topic: pets → facts: pets</div>
-      </div>
-      <div class="ttools">turn latency 5.8 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s6-t1-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-      <div class="tyou"><em>„Thank you. And is there parking at the hotel?“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s6-t2-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">Yes, we have a private parking lot right at the hotel, free of charge for all guests. Would you like me to check room availability for your stay?</div>
-      <div class="tdata"><b>⚙ get_hotel_info</b><span class="targ">(topic=parking)</span>
-        <div>topic: parking → facts: parking_bikes</div>
-      </div>
-      <div class="ttools">turn latency 4.8 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s6-t2-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-    </div>
-    <div class="tchat"><div class="tname">#7 · EN · barge-in: guest interrupts — Linda stops (SPOKEN, free stand-in voice) <span class="tmeta">round trip 27s · pass</span></div>
-      <div class="tyou"><em>„Please tell me about all five of your rooms in detail.“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s7-t1-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">I’ve put all five rooms on your screen with photos and details.</div>
-      <div class="ther">Comfort Single Room – 12 sqm, courtyard view, quiet, for one guest.</div>
-      <div class="ther">Standard Double Room – 15 sqm, street view, for two guests.</div>
-      <div class="ther">Comfort Double Room – 19 sqm, quiet courtyard side, coffee machine, mineral water.</div>
-      <div class="ther">Comfort Double Room Plus – 23 sqm, courtyard view, coffee machine, mineral water, and a sofa bed for a child up to 15.</div>
-      <div class="ther">Basic Apartment – 30 sqm, courtyard view, small kitchen, balcony, coffee machine, and mineral water.</div>
-      <div class="tdata"><b>⚙ get_room_details</b><span class="targ">(room=224576)</span>
-        <div>Comfort Single Room · 12 m² · courtyard side · 2 photos</div>
-        <div>quiet courtyard side</div>
-      </div>
-      <div class="tdata"><b>⚙ get_room_details</b><span class="targ">(room=235426)</span>
-        <div>Standard Double Room · 15 m² · street side · 4 photos</div>
-        <div>street side</div>
-      </div>
-      <div class="tdata"><b>⚙ get_room_details</b><span class="targ">(room=224578)</span>
-        <div>Comfort Double Room · 19 m² · courtyard side · 2 photos</div>
-        <div>quiet courtyard side · coffee machine · 2 bottles mineral water</div>
-      </div>
-      <div class="tdata"><b>⚙ get_room_details</b><span class="targ">(room=224577)</span>
-        <div>Comfort Double Room Plus · 23 m² · courtyard side · 3 photos</div>
-        <div>quiet courtyard side · coffee machine · 2 bottles mineral water · sofa bed / extra bed for children up to 15 (on demand)</div>
-      </div>
-      <div class="tdata"><b>⚙ get_room_details</b><span class="targ">(room=224579)</span>
-        <div>Basic Apartment · 30 m² · courtyard side · 6 photos</div>
-        <div>small kitchen · balcony · coffee machine · 2 bottles mineral water</div>
-      </div>
-      <div class="ttools">turn latency 7.6 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s7-t1-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-      <div class="tyou"><em>„Sorry to interrupt, just tell me if parking is free.“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s7-t2-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">Yes, parking is free for all hotel guests. There’s a private lot right by the rooms. I’ve also put the details on your screen.</div>
-      <div class="tdata"><b>⚙ get_hotel_info</b><span class="targ">(topic=parking)</span>
-        <div>topic: parking → facts: parking_bikes</div>
-      </div>
-      <div class="ttools">turn latency 4.3 s · barge-in: Linda silent within ~5551 ms of the interrupt · barge-in event fired</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s7-t2-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-    </div>
-    <div class="tchat"><div class="tname">#8 · EN · rapid follow-up turns (no session bleed, realtime) <span class="tmeta">round trip 21s · pass</span></div>
-      <div class="tyou"><em>„Is the sauna free for guests?“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s8-t1-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">The sauna is free for guests who book directly with us. If you booked through a third party, there’s a fee of 15 euros per person.</div>
-      <div class="tdata"><b>⚙ get_hotel_info</b><span class="targ">(topic=sauna)</span>
-        <div>topic: sauna → facts: sauna_wellness</div>
-      </div>
-      <div class="ttools">turn latency 5.8 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s8-t1-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-      <div class="tyou"><em>„And what about Wi-Fi?“</em> <a class="taud" href="../test_users/results/livekit-2026-07-07T07-38-00/s8-t2-guest.wav">🔊 guest audio</a></div>
-      <div class="ther">Wi-Fi is free for all guests and doesn’t require a password. It’s available in every room.</div>
-      <div class="tdata"><b>⚙ get_hotel_info</b><span class="targ">(topic=Wi-Fi)</span>
-        <div>topic: all → facts: _source, hotel, checkin_checkout, reception_hours, breakfast, parking_bikes, wifi, sauna_w</div>
-      </div>
-      <div class="ttools">turn latency 4.5 s</div>
-      <img class="tshot" src="../test_users/results/livekit-2026-07-07T07-38-00/s8-t2-panel.png" alt="the actual chatbox after this turn" loading="lazy">
-    </div>
-  </section>
+      <p class="foot">a written-but-dormant 10th tool (store the lead + SMS/email staff) is kept unregistered; it switches on only if the hotel wants active staff alerts and provides a mobile number.</p>
+    </section>
+
+  </div>
 
 </main>
+<script>
+  function showTab(n){
+    document.querySelectorAll('.tabpanel').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+    document.getElementById('tab'+n).classList.add('active');
+    document.querySelector('.tab[data-tab="'+n+'"]').classList.add('active');
+  }
+</script>
 </body>
 </html>
